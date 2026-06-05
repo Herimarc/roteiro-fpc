@@ -1,597 +1,1714 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal de Estudos - Fisioterapia UNINASSAU Cacoal</title>
+  
+  <!-- Fontes Premium -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Ícones Tabler -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css">
 
-<style>
-*{box-sizing:border-box;margin:0;padding:0}
-.wrap{padding:1.5rem 0;max-width:100%}
-.hero{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:1.5rem;margin-bottom:1.5rem;border:0.5px solid var(--color-border-tertiary)}
-.hero h1{font-size:20px;font-weight:500;color:var(--color-text-primary);margin-bottom:4px}
-.hero p{font-size:13px;color:var(--color-text-secondary);line-height:1.6}
-.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.5rem}
-.tab{padding:7px 13px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);font-size:13px;font-weight:500;cursor:pointer;color:var(--color-text-secondary);transition:all .15s}
-.tab.active{background:#EEEDFE;color:#3C3489;border-color:#AFA9EC}
-.section{display:none}
-.section.active{display:block}
-.card{background:var(--color-background-primary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-lg);padding:1.25rem;margin-bottom:1rem}
-.card-title{font-size:15px;font-weight:500;color:var(--color-text-primary);margin-bottom:8px;display:flex;align-items:center;gap:8px}
-.card-title i{font-size:18px;color:#534AB7}
-.card p,.card li{font-size:14px;color:var(--color-text-secondary);line-height:1.7;margin-bottom:6px}
-.card ul{padding-left:1.2rem;margin-bottom:6px}
-.card p:last-child{margin-bottom:0}
-.badge{display:inline-block;padding:3px 9px;border-radius:var(--border-radius-md);font-size:12px;font-weight:500;margin-right:4px;margin-bottom:4px}
-.bp{background:#EEEDFE;color:#3C3489}
-.bt{background:#E1F5EE;color:#085041}
-.ba{background:#FAEEDA;color:#633806}
-.bc{background:#FAECE7;color:#712B13}
-.bb{background:#E6F1FB;color:#0C447C}
-.bg{background:#EAF3DE;color:#27500A}
-.br{background:#FCEBEB;color:#791F1F}
-.bpk{background:#FBEAF0;color:#72243E}
-.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-bottom:1rem}
-.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:1rem;margin-bottom:1rem}
-.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:0.75rem;margin-bottom:1rem}
-.metric{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:1rem;text-align:center}
-.metric-num{font-size:22px;font-weight:500;color:var(--color-text-primary)}
-.metric-label{font-size:12px;color:var(--color-text-secondary);margin-top:4px;line-height:1.4}
-.tl{display:flex;gap:12px;margin-bottom:1rem;align-items:flex-start}
-.dot{min-width:38px;height:38px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:500;flex-shrink:0}
-.dp{background:#EEEDFE;color:#3C3489}
-.dt{background:#E1F5EE;color:#085041}
-.da{background:#FAEEDA;color:#633806}
-.dc{background:#FAECE7;color:#712B13}
-.db{background:#E6F1FB;color:#0C447C}
-.tl-text h3{font-size:14px;font-weight:500;color:var(--color-text-primary);margin-bottom:3px}
-.tl-text p{font-size:13px;color:var(--color-text-secondary);line-height:1.6}
-.tip{background:#E1F5EE;border-left:3px solid #1D9E75;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;padding:.9rem 1rem;margin-bottom:.75rem}
-.tip p{font-size:13px;color:#085041;line-height:1.6;margin:0}
-.tip strong{color:#0F6E56}
-.warn{background:#FAEEDA;border-left:3px solid #EF9F27;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;padding:.9rem 1rem;margin-bottom:.75rem}
-.warn p{font-size:13px;color:#633806;line-height:1.6;margin:0}
-.warn strong{color:#854F0B}
-.danger{background:#FCEBEB;border-left:3px solid #E24B4A;border-radius:0 var(--border-radius-md) var(--border-radius-md) 0;padding:.9rem 1rem;margin-bottom:.75rem}
-.danger p{font-size:13px;color:#791F1F;line-height:1.6;margin:0}
-.danger strong{color:#A32D2D}
-.step{display:flex;gap:10px;align-items:flex-start;padding:.75rem;border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);margin-bottom:.5rem;background:var(--color-background-primary)}
-.snum{min-width:28px;height:28px;border-radius:50%;background:#EEEDFE;color:#3C3489;font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.stxt h4{font-size:13px;font-weight:500;color:var(--color-text-primary);margin-bottom:2px}
-.stxt p{font-size:12px;color:var(--color-text-secondary);line-height:1.5}
-.quiz-q{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:1.25rem;margin-bottom:1rem}
-.quiz-q p.qtext{font-size:14px;font-weight:500;color:var(--color-text-primary);margin-bottom:10px;line-height:1.5}
-.qopt{padding:8px 12px;border-radius:var(--border-radius-md);border:0.5px solid var(--color-border-secondary);margin-bottom:6px;font-size:13px;cursor:pointer;color:var(--color-text-secondary);background:var(--color-background-primary);transition:all .15s;display:block;width:100%;text-align:left}
-.qopt:hover{background:var(--color-background-secondary)}
-.qopt.correct{background:#EAF3DE;border-color:#97C459;color:#27500A}
-.qopt.wrong{background:#FCEBEB;border-color:#F09595;color:#791F1F}
-.qfb{font-size:13px;margin-top:8px;padding:8px 10px;border-radius:var(--border-radius-md);display:none;line-height:1.5}
-.qfb.show{display:block}
-.fb-ok{background:#EAF3DE;color:#27500A}
-.fb-err{background:#FCEBEB;color:#791F1F}
-h2.sec{font-size:17px;font-weight:500;color:var(--color-text-primary);margin-bottom:.75rem;margin-top:1.25rem}
-h2.sec:first-child{margin-top:0}
-.divider{height:.5px;background:var(--color-border-tertiary);margin:1.25rem 0}
-.esp-tag{display:inline-block;background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:var(--border-radius-md);padding:6px 10px;font-size:12px;color:var(--color-text-secondary);margin:3px}
-.new-tag{background:#EEEDFE;color:#3C3489;border-color:#AFA9EC;font-weight:500}
-.score-box{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);padding:1.25rem;text-align:center;margin-top:1rem;display:none}
-.score-box.show{display:block}
-.score-num{font-size:32px;font-weight:500;color:var(--color-text-primary)}
-.score-label{font-size:14px;color:var(--color-text-secondary);margin-top:4px}
-.pill-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:.5rem}
-.art-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:.5rem}
-.art-box{background:var(--color-background-secondary);border-radius:var(--border-radius-md);padding:8px 12px;flex:1;min-width:120px}
-.art-box .art-label{font-size:11px;color:var(--color-text-tertiary);font-weight:500;margin-bottom:2px}
-.art-box .art-val{font-size:13px;color:var(--color-text-primary);font-weight:500}
-.art-box p{font-size:12px;color:var(--color-text-secondary);line-height:1.5;margin-top:4px}
-</style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f5f3ff',
+              100: '#ede9fe',
+              200: '#ddd6fe',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              900: '#312e81',
+            }
+          }
+        }
+      }
+    }
+  </script>
 
-<div class="wrap">
+  <style>
+    /* Estilos personalizados de transições e scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
 
-<div class="hero">
-  <h1><i class="ti ti-heartbeat" aria-hidden="true"></i> Roteiro completo — fisioterapia, profissão e carreira</h1>
-  <p>1º período · UNINASSAU Cacoal · Material integrado com teoria aprofundada, legislação detalhada, 16 especialidades e simulado com 10 questões</p>
-</div>
+    /* Efeito de Flashcard 3D */
+    .flashcard-inner {
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+    }
+    .flashcard-flipped {
+      transform: rotateY(180deg);
+    }
+    .flashcard-front, .flashcard-back {
+      backface-visibility: hidden;
+    }
+    .flashcard-back {
+      transform: rotateY(180deg);
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen font-sans flex flex-col">
 
-<div class="tabs" role="tablist">
-  <button class="tab active" onclick="showTab('fund')" role="tab">Fundamentos</button>
-  <button class="tab" onclick="showTab('hist')" role="tab">História</button>
-  <button class="tab" onclick="showTab('leg')" role="tab">Legislação</button>
-  <button class="tab" onclick="showTab('etica')" role="tab">Ética</button>
-  <button class="tab" onclick="showTab('esp')" role="tab">16 Especialidades</button>
-  <button class="tab" onclick="showTab('cot')" role="tab">Dia a dia</button>
-  <button class="tab" onclick="showTab('quiz')" role="tab">Simulado</button>
-</div>
-
-<!-- FUNDAMENTOS -->
-<div id="fund" class="section active">
-  <h2 class="sec">Definição, objeto de estudo e bases científicas</h2>
-  <div class="card">
-    <div class="card-title"><i class="ti ti-book" aria-hidden="true"></i> Conceito oficial (COFFITO)</div>
-    <p>A Fisioterapia é uma ciência da Saúde aplicada que estuda, previne e trata os distúrbios cinético-funcionais intercorrentes em órgãos e sistemas do corpo humano, sejam gerados por alterações genéticas, traumas ou doenças adquiridas.</p>
-    <p>Seu objeto formal de estudo é o movimento humano em todas as suas formas de expressão e potencialidades — consagrado pela Resolução COFFITO-80/1987.</p>
-  </div>
-  <div class="grid2">
-    <div class="card">
-      <div class="card-title"><i class="ti ti-atom" aria-hidden="true"></i> Bases científicas</div>
-      <p>A prática fisioterapêutica fundamenta-se em: anatomia, fisiologia, cinesiologia, biomecânica, neurofisiologia, patologia e farmacologia. Sem essas bases, os recursos terapêuticos perdem respaldo científico.</p>
-    </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-arrows-maximize" aria-hidden="true"></i> Amplitude de atuação</div>
-      <p>A atuação não se restringe à reabilitação. Com plena autonomia, o fisioterapeuta atua na <span class="badge bp">promoção</span> <span class="badge bt">prevenção</span> <span class="badge ba">tratamento</span> e <span class="badge bc">reabilitação</span> da saúde humana.</p>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><i class="ti ti-stethoscope" aria-hidden="true"></i> Diagnóstico médico ≠ diagnóstico fisioterapêutico</div>
-    <p><span class="badge bc">Médico</span> Diagnostica a doença (ex: Bursite do ombro — diagnóstico nosológico)</p>
-    <p><span class="badge bp">Fisioterapeuta</span> Diagnostica a disfunção do movimento (ex: limitação de 60° de abdução com dor em arco — diagnóstico cinético-funcional)</p>
-    <p>Esta distinção garante autonomia profissional e está amparada pela Resolução COFFITO nº 80/1987 e pelo Art. 12 do Código de Ética.</p>
-  </div>
-
-  <h2 class="sec">Níveis de atenção à saúde (SUS)</h2>
-  <div class="grid3">
-    <div class="card">
-      <div class="card-title"><i class="ti ti-shield-check" aria-hidden="true"></i> Primário — básico</div>
-      <p><span class="badge bg">Prevenção</span></p>
-      <p>Equipes ampliadas (eNASF), educação em saúde, prevenção de quedas em idosos, ergonomia em empresas, cinesioterapia gestacional, grupos comunitários.</p>
-    </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-first-aid-kit" aria-hidden="true"></i> Secundário — média complexidade</div>
-      <p><span class="badge ba">Tratamento precoce</span></p>
-      <p>Atendimento ambulatorial, centros de reabilitação, UPAs. Trata patologias já instaladas como pós-operatórios e sequelas de AVC em fase subaguda.</p>
-    </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-building-hospital" aria-hidden="true"></i> Terciário — alta complexidade</div>
-      <p><span class="badge bb">Reabilitação</span></p>
-      <p>UTI adulto, pediátrica e neonatal. Ventilação mecânica, mobilização precoce, desmame ventilatório, reabilitação de sequelas graves.</p>
-    </div>
-  </div>
-
-  <h2 class="sec">Processo fisioterapêutico — etapas ordenadas</h2>
-  <div class="step"><div class="snum">1</div><div class="stxt"><h4>Consulta / Anamnese</h4><p>Entrevista estruturada: QP, HMA, antecedentes, exames físicos e avaliações específicas. O fisioterapeuta tem total autonomia nesta etapa — não precisa de encaminhamento médico prévio.</p></div></div>
-  <div class="step"><div class="snum">2</div><div class="stxt"><h4>Diagnóstico cinético-funcional</h4><p>Identificação qualitativa e quantitativa das disfunções de movimento (ADM, força muscular, equilíbrio, marcha). Diferente do diagnóstico nosológico médico.</p></div></div>
-  <div class="step"><div class="snum">3</div><div class="stxt"><h4>Prognóstico</h4><p>Previsão da evolução baseada em evidências. Define metas de curto, médio e longo prazo e estimativa de tempo de tratamento.</p></div></div>
-  <div class="step"><div class="snum">4</div><div class="stxt"><h4>Prescrição</h4><p>Escolha dos recursos terapêuticos e dosimetria: frequência, duração, intensidade e progressão. Deve ser individualizada e baseada em evidências.</p></div></div>
-  <div class="step"><div class="snum">5</div><div class="stxt"><h4>Intervenção / Tratamento</h4><p>Execução do plano terapêutico com reavaliações periódicas para ajuste de conduta conforme evolução.</p></div></div>
-  <div class="step"><div class="snum">6</div><div class="stxt"><h4>Alta fisioterapêutica</h4><p>Atividade privativa do fisioterapeuta. Encerramento formal após atingir objetivos, com orientações domiciliares e prevenção de recidivas.</p></div></div>
-
-  <div class="divider"></div>
-  <h2 class="sec">Recursos terapêuticos</h2>
-  <div class="grid2">
-    <div class="card">
-      <div class="card-title"><i class="ti ti-run" aria-hidden="true"></i> Cinesioterapia</div>
-      <p>Terapia central da profissão. Pode ser <span class="badge bp">ativa</span> <span class="badge bt">passiva</span> <span class="badge ba">assistida</span> <span class="badge bc">resistida</span>. Todo tratamento envolve algum grau de cinesioterapia.</p>
-    </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-bolt" aria-hidden="true"></i> Eletroterapia e agentes físicos</div>
-      <p>TENS, FES, ultrassom, laser, ondas de choque, termoterapia (calor), crioterapia (frio). Finalidades: analgesia, estímulo muscular, cicatrização tecidual.</p>
-    </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-barbell" aria-hidden="true"></i> Mecanoterapia</div>
-      <p>Halteres, faixas elásticas, bolas terapêuticas, polias, plataformas instáveis. Para fortalecimento, ganho de ADM e propriocepção.</p>
-    </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-droplet" aria-hidden="true"></i> Hidroterapia e massoterapia</div>
-      <p>Hidroterapia: piscina aquecida (32–35°C), flutuação reduz carga articular. Difere da hidroginástica (educador físico). Massoterapia: analgesia, relaxamento, drenagem linfática.</p>
-    </div>
-  </div>
-  <div class="tip"><p><strong>Conexão prática:</strong> No laboratório, ao ajustar a dosimetria do TENS, você está executando a etapa de prescrição do processo fisioterapêutico. A frequência e intensidade que você configura é exatamente o que separa um bom fisioterapeuta de um mau profissional — isso é imperícia quando feito sem saber.</p></div>
-</div>
-
-<!-- HISTÓRIA -->
-<div id="hist" class="section">
-  <h2 class="sec">Linha do tempo mundial</h2>
-  <div class="tl"><div class="dot da">2698<br>a.C.</div><div class="tl-text"><h3>China e Índia — primeiros registros</h3><p>Registros de ginástica curativa e exercícios respiratórios para evitar obstrução de órgãos. Na China, o Kung-Fu incluía movimentos terapêuticos sistematizados.</p></div></div>
-  <div class="tl"><div class="dot da">Grécia</div><div class="tl-text"><h3>Bases clássicas gregas</h3><p>Heródico de Selímbria: precursor da ginástica médica. Hipócrates (Pai da Medicina): empregou hidroterapia, massoterapia e exercícios, formulando o princípio "a função estimula o órgão". Galeno: sistematizou ginástica corretiva para deformidades torácicas.</p></div></div>
-  <div class="tl"><div class="dot da">Idade<br>Média</div><div class="tl-text"><h3>O longo silêncio</h3><p>Interrupção do avanço científico por desvalorização do corpo no pensamento religioso dominante. Foco sanitário voltado a conter epidemias como a Peste Negra. Retrocesso significativo na terapia pelo exercício.</p></div></div>
-  <div class="tl"><div class="dot dc">1543<br>1569</div><div class="tl-text"><h3>Renascimento — retomada</h3><p>Andreas Vesalius publica De Humani Corporis Fabrica (1543), revolucionando a anatomia. Hieronymus Mercurialis publica De Arte Gymnastica (1569), defendendo que o exercício terapêutico deve ser regular e individualizado.</p></div></div>
-  <div class="tl"><div class="dot dp">1813</div><div class="tl-text"><h3>Pehr Henrik Ling — pai da fisioterapia moderna</h3><p>Funda o Instituto Real de Ginástica na Suécia, sistematizando a "ginástica sueca". Seus métodos de massagem e exercícios se espalharam pela Europa e são considerados a base da fisioterapia moderna.</p></div></div>
-  <div class="tl"><div class="dot dc">1894</div><div class="tl-text"><h3>Primeira associação profissional</h3><p>Fundação da Chartered Society no Reino Unido — primeira associação de fisioterapia do mundo. Demonstra o processo formal de organização da categoria profissional.</p></div></div>
-  <div class="tl"><div class="dot dc">1914–18</div><div class="tl-text"><h3>1ª Guerra Mundial — demanda em massa</h3><p>Grande número de mutilados criou urgência por reabilitação em larga escala. Nos EUA, surgem as "Reconstruction Aides". A necessidade bélica acelerou decisivamente o desenvolvimento da profissão.</p></div></div>
-  <div class="tl"><div class="dot db">1940–50</div><div class="tl-text"><h3>Epidemias de poliomielite e 2ª Guerra</h3><p>Fatores sociais mais determinantes para a consolidação global da profissão. A epidemia de 1952 nos EUA (57.628 casos) impulsionou técnicas de reabilitação neurológica e respiratória, incluindo o uso do ferro pulmonar e o Kenny Method.</p></div></div>
-  <div class="tl"><div class="dot dt">1951</div><div class="tl-text"><h3>World Physiotherapy — fundação</h3><p>Em 8 de setembro de 1951, em Copenhague, é fundada a World Confederation for Physical Therapy (atual World Physiotherapy), unificando a profissão globalmente.</p></div></div>
-
-  <div class="divider"></div>
-  <h2 class="sec">História no Brasil</h2>
-  <div class="tl"><div class="dot dt">1951</div><div class="tl-text"><h3>Primeiro curso formal</h3><p>Hospital das Clínicas de São Paulo, com Dr. Waldo Rolim de Moraes. Curso técnico de um ano, formando "técnicos em fisioterapia" — ainda não era formação de nível superior.</p></div></div>
-  <div class="tl"><div class="dot da">1963</div><div class="tl-text"><h3>O erro do Parecer CFE nº 388/63</h3><p>Classificou o fisioterapeuta como "auxiliar médico", retirando sua autonomia clínica. Este erro histórico seria superado apenas com o Decreto-Lei 938/1969.</p></div></div>
-  <div class="tl"><div class="dot dp">1969</div><div class="tl-text"><h3>Decreto-Lei 938 — regulamentação definitiva</h3><p>Reestabelece o status de nível superior, define atividades privativas e garante autonomia. Assinado em 13 de outubro — Dia do Fisioterapeuta. Foi assinado por uma Junta Militar durante o afastamento do presidente Costa e Silva por motivos de saúde.</p></div></div>
-  <div class="tl"><div class="dot dc">1975</div><div class="tl-text"><h3>Lei 6.316 — criação do COFFITO/CREFITO</h3><p>Estrutura o sistema de fiscalização e controle da profissão em todo o território nacional.</p></div></div>
-  <div class="tip"><p><strong>Contexto regional:</strong> O Brasil possui mais de 300.000 profissionais registrados, mas a distribuição é desigual — concentrada no Sudeste e Sul. A Região Norte tem a menor relação de fisioterapeutas por habitante, representando vazio assistencial e <strong>grande campo de atuação</strong> para quem se forma em Rondônia.</p></div>
-</div>
-
-<!-- LEGISLAÇÃO -->
-<div id="leg" class="section">
-  <div class="grid4">
-    <div class="metric"><div class="metric-num">1969</div><div class="metric-label">Decreto-Lei 938 — pilar jurídico</div></div>
-    <div class="metric"><div class="metric-num">1975</div><div class="metric-label">Lei 6.316 — COFFITO/CREFITO</div></div>
-    <div class="metric"><div class="metric-num">1978</div><div class="metric-label">Res. COFFITO-8 — atividades privativas</div></div>
-    <div class="metric"><div class="metric-num">1987</div><div class="metric-label">Res. COFFITO-80 — ciência aplicada</div></div>
-  </div>
-
-  <h2 class="sec">Decreto-Lei nº 938/1969 — artigo a artigo</h2>
-  <div class="card">
-    <div class="card-title"><i class="ti ti-gavel" aria-hidden="true"></i> O pilar jurídico da profissão <span class="badge bc">mais cobrado</span></div>
-    <div class="art-row">
-      <div class="art-box"><div class="art-label">Art. 2º</div><div class="art-val">Nível superior</div><p>Define formalmente fisioterapeutas como profissionais de nível superior, revertendo o Parecer CFE 388/63.</p></div>
-      <div class="art-box"><div class="art-label">Art. 3º</div><div class="art-val">Atividades privativas</div><p>Execução de métodos fisioterápicos para restaurar, desenvolver e conservar a capacidade física — exclusiva do fisioterapeuta.</p></div>
-      <div class="art-box"><div class="art-label">Art. 5º</div><div class="art-val">Atribuições amplas</div><p>Dirigir e assessorar serviços públicos ou privados, exercer magistério superior/médio e supervisionar profissionais e alunos.</p></div>
-    </div>
-  </div>
-
-  <h2 class="sec">Autonomia profissional — base legal</h2>
-  <div class="grid2">
-    <div class="card">
-      <div class="card-title"><i class="ti ti-shield" aria-hidden="true"></i> Atividades privativas (Res. COFFITO-8/1978)</div>
-      <p>São exclusivas do fisioterapeuta registrado:</p>
-      <ul>
-        <li>Execução de técnicas fisioterápicas</li>
-        <li>Emissão de pareceres e laudos fisioterapêuticos</li>
-        <li>Atuação em perícias funcionais</li>
-        <li>Concessão da alta fisioterapêutica</li>
-        <li>Consulta e diagnóstico cinético-funcional</li>
-      </ul>
-    </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-users" aria-hidden="true"></i> Atividades interprofissionais</div>
-      <p>Práticas compartilhadas com outras profissões da saúde — não são exclusivas da fisioterapia:</p>
-      <p><span class="badge bp">Acupuntura</span> compartilhada com médicos, enfermeiros, terapeutas ocupacionais e biomédicos</p>
-      <p><span class="badge bp">Drenagem linfática estética</span> compartilhada com outras categorias</p>
-    </div>
-  </div>
-
-  <h2 class="sec">Sistema COFFITO / CREFITO</h2>
-  <div class="grid2">
-    <div class="card">
-      <div class="card-title"><i class="ti ti-world" aria-hidden="true"></i> COFFITO (Federal) — Brasília</div>
-      <p><span class="badge bp">Normativo</span> <span class="badge bp">Nacional</span></p>
-      <p>Autarquia pública federal. Normatiza, altera o Código de Ética, reconhece especialidades e funciona como tribunal superior de ética para recursos disciplinares.</p>
-    </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-map" aria-hidden="true"></i> CREFITO (Regional)</div>
-      <p><span class="badge bt">Executivo</span> <span class="badge bt">Fiscalizador</span></p>
-      <p>Divisão descentralizada por estados/regiões. Expede registro profissional obrigatório, arrecada anuidades, fiscaliza o exercício profissional e aplica sanções em primeira instância. Rondônia: CREFITO-14.</p>
-    </div>
-  </div>
-
-  <h2 class="sec">Modelos de equipe interdisciplinar</h2>
-  <div class="grid3">
-    <div class="card">
-      <div class="card-title"><i class="ti ti-layout-columns" aria-hidden="true"></i> Multidisciplinar</div>
-      <p>Profissionais atuam em paralelo, de forma fragmentada e isolada. Cada um cuida do seu recorte sem integração.</p>
-    </div>
-    <div class="card" style="border:2px solid #AFA9EC">
-      <div class="card-title"><i class="ti ti-circles-relation" aria-hidden="true"></i> Interdisciplinar <span class="badge bp">ideal moderno</span></div>
-      <p>Profissionais dialogam, realizam rounds de discussão e compartilham metas terapêuticas integradas. O paciente é o centro.</p>
-    </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-topology-star" aria-hidden="true"></i> Transdisciplinar</div>
-      <p>Diluição das barreiras disciplinares rígidas em prol do cuidado global. Modelo mais complexo e avançado.</p>
-    </div>
-  </div>
-
-  <div class="card">
-    <div class="card-title"><i class="ti ti-clock" aria-hidden="true"></i> Jornada de trabalho e responsabilidade técnica</div>
-    <p>A Lei Federal nº 8.856/1994 fixou a jornada máxima em <span class="badge ba">30 horas semanais</span> para fisioterapeutas e terapeutas ocupacionais.</p>
-    <p>Todo serviço ou empresa de fisioterapia deve ter obrigatoriamente um fisioterapeuta registrado como <span class="badge bp">Responsável Técnico (RT)</span> perante o CREFITO.</p>
-  </div>
-</div>
-
-<!-- ÉTICA -->
-<div id="etica" class="section">
-  <h2 class="sec">Código de Ética — Resolução COFFITO nº 424/2013</h2>
-  <div class="card">
-    <div class="card-title"><i class="ti ti-scale" aria-hidden="true"></i> Os 4 pilares da bioética principialista</div>
-    <div class="grid2">
-      <div>
-        <p><span class="badge bt">Beneficência</span> Agir sempre buscando o máximo benefício do paciente em cada intervenção.</p>
-        <p><span class="badge bc">Não maleficência</span> Proibição de causar danos ou procedimentos desnecessários. Princípio latino: primum non nocere (primeiro, não prejudicar).</p>
+  <!-- Header Institucional -->
+  <header class="bg-gradient-to-r from-brand-700 to-indigo-900 text-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="bg-white p-2 rounded-xl text-brand-700 flex items-center justify-center shadow-md">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+          </svg>
+        </div>
+        <div>
+          <h1 class="text-lg md:text-xl font-bold tracking-tight">Fisioterapia · UNINASSAU</h1>
+          <p class="text-xs text-brand-100 font-medium">Campus Cacoal, RO — 1º Período</p>
+        </div>
       </div>
-      <div>
-        <p><span class="badge bp">Autonomia</span> Respeitar o direito de decisão do paciente e obter consentimento informado antes de qualquer procedimento.</p>
-        <p><span class="badge bb">Justiça</span> Distribuição equitativa e igualitária dos cuidados de saúde, sem discriminação.</p>
+      
+      <!-- Badges de Status de Estudo -->
+      <div class="flex items-center gap-2 flex-wrap">
+        <span class="bg-brand-600 border border-brand-500 text-white text-xs px-3 py-1.5 rounded-full font-semibold flex items-center gap-1">
+          <i class="ti ti-activity text-sm"></i> Introdução à Fisioterapia
+        </span>
+        <span class="bg-emerald-600 border border-emerald-500 text-white text-xs px-3 py-1.5 rounded-full font-semibold flex items-center gap-1">
+          <i class="ti ti-school text-sm"></i> Semestre 2026.1
+        </span>
       </div>
     </div>
-  </div>
+  </header>
 
-  <h2 class="sec">Responsabilidade profissional — infração ética</h2>
-  <div class="card">
-    <div class="card-title"><i class="ti ti-alert-triangle" aria-hidden="true"></i> Negligência, imperícia e imprudência</div>
-    <p><span class="badge ba">Negligência</span> Omissão, desleixo, descuido ou falta de atenção com o dever. Ex: deixar paciente sozinho no turbilhão ou infravermelho; não registrar a evolução no prontuário.</p>
-    <p><span class="badge bc">Imperícia</span> Executar procedimento sem ter conhecimento técnico ou habilitação exigida. Ex: aplicar técnica manipulativa complexa sem treinamento; usar equipamento de eletroterapia sem conhecer os parâmetros.</p>
-    <p><span class="badge br">Imprudência</span> Agir sem a cautela necessária, precipitação consciente do risco. Ex: utilizar dosimetria acima do recomendado pelo fabricante sabendo do risco; mobilizar paciente pós-cirúrgico sem verificar restrições.</p>
-  </div>
-
-  <h2 class="sec">Proibições éticas — pegadinhas de prova</h2>
-  <div class="danger"><p><strong>Fotos "Antes e Depois":</strong> expressamente proibido publicar para autopromoção em redes sociais, mesmo com autorização do paciente (Art. 10, V — atualizado pela Resolução nº 519/2020). Mesmo com consentimento, a publicidade pela comparação é vedada.</p></div>
-  <div class="danger"><p><strong>Telessaúde sem amparo:</strong> proibido realizar consultas, diagnósticos ou prescrever tratamentos totalmente à distância sem triagem presencial ou respaldo das resoluções específicas de telessaúde.</p></div>
-  <div class="danger"><p><strong>Comissões e vantagens:</strong> proibido receber qualquer vantagem financeira pela indicação de fornecedores de órteses, próteses ou pelo encaminhamento de pacientes a outros serviços.</p></div>
-  <div class="danger"><p><strong>Sigilo nas redes sociais:</strong> revelar dados identificáveis de casos clínicos em redes sociais é infração ética grave, mesmo sem citar o nome do paciente — se houver possibilidade de identificação.</p></div>
-
-  <h2 class="sec">Sigilo profissional e sanções disciplinares</h2>
-  <div class="grid2">
-    <div class="card">
-      <div class="card-title"><i class="ti ti-lock" aria-hidden="true"></i> Sigilo profissional</div>
-      <p>Dever fundamental de resguardar o segredo das informações do paciente. Pode ser revelado apenas por <span class="badge bb">ordem judicial</span> ou com <span class="badge bb">autorização expressa do paciente</span>. Inclui diagnóstico, prontuários, registros de sessão e imagens.</p>
-    </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-gavel" aria-hidden="true"></i> Sanções disciplinares (Lei 6.316/75)</div>
-      <p>Em ordem crescente de gravidade:</p>
-      <p><span class="badge bt">1</span> Advertência <span class="badge ba">2</span> Multa <span class="badge ba">3</span> Censura pública <span class="badge bc">4</span> Suspensão (até 5 anos) <span class="badge br">5</span> Cancelamento/cassação do registro</p>
+  <!-- Banner Informativo -->
+  <div class="bg-yellow-50 border-b border-yellow-200 text-yellow-800 text-xs px-4 py-2.5">
+    <div class="max-w-7xl mx-auto flex items-center justify-between flex-wrap gap-2">
+      <div class="flex items-center gap-2 font-medium">
+        <i class="ti ti-info-circle-filled text-base text-yellow-600"></i>
+        <span><strong>Foco na Prova:</strong> Plataforma integrada de estudos com base nos eixos do COFFITO, história da profissão e Legislação do SUS.</span>
+      </div>
+      <button onclick="document.getElementById('simulador-box').scrollIntoView({behavior: 'smooth'})" class="underline hover:text-yellow-950 font-bold">Acessar Simulador de Parâmetros →</button>
     </div>
   </div>
 
-  <div class="card">
-    <div class="card-title"><i class="ti ti-file-text" aria-hidden="true"></i> Prontuário fisioterapêutico</div>
-    <p>Documento obrigatório para todo atendimento individual. É um documento legal — tudo o que não está escrito, juridicamente não foi feito.</p>
-    <p>A Resolução COFFITO nº 415/2012 exige guarda mínima de <span class="badge bc">20 anos</span> para prontuários físicos ou eletrônicos — diferente da guarda de 5 anos que é um equívoco comum.</p>
-  </div>
-  <div class="warn"><p><strong>Atenção:</strong> A guarda do prontuário é de 20 anos (Res. 415/2012), não 5 anos. Essa é uma das pegadinhas mais comuns em prova.</p></div>
-</div>
+  <main class="flex-grow max-w-7xl mx-auto w-full px-4 py-6 flex flex-col lg:flex-row gap-6">
+    
+    <!-- Sidebar de Navegação (Esquerda) -->
+    <aside class="lg:w-1/4 flex-shrink-0">
+      <div class="bg-white rounded-2xl border border-slate-200 p-4 sticky top-24 shadow-sm space-y-4">
+        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider px-2">Navegação e Módulos</p>
+        <nav class="space-y-1" role="tablist">
+          <button onclick="switchTab('dashboard')" id="btn-dashboard" class="nav-tab active w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all bg-brand-50 text-brand-700 font-semibold border border-brand-100">
+            <i class="ti ti-dashboard text-lg"></i> Painel de Estudo Ativo
+          </button>
+          <button onclick="switchTab('fundamentos')" id="btn-fundamentos" class="nav-tab w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-50 hover:text-slate-900">
+            <i class="ti ti-books text-lg"></i> Fundamentos Científicos
+          </button>
+          <button onclick="switchTab('historia')" id="btn-historia" class="nav-tab w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-50 hover:text-slate-900">
+            <i class="ti ti-hourglass-high text-lg"></i> História & Evolução
+          </button>
+          <button onclick="switchTab('legislacao')" id="btn-legislacao" class="nav-tab w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-50 hover:text-slate-900">
+            <i class="ti ti-gavel text-lg"></i> Legislação e Autonomia
+          </button>
+          <button onclick="switchTab('especialidades')" id="btn-especialidades" class="nav-tab w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-50 hover:text-slate-900">
+            <i class="ti ti-stethoscope text-lg"></i> As 16 Especialidades
+          </button>
+          <button onclick="switchTab('simulado')" id="btn-simulado" class="nav-tab w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-50 hover:text-slate-900">
+            <i class="ti ti-checkbox text-lg"></i> Simulado Interativo
+          </button>
+        </nav>
 
-<!-- 16 ESPECIALIDADES -->
-<div id="esp" class="section">
-  <div class="tip"><p><strong>Para o título de especialista:</strong> mínimo de 2 anos de registro ativo no CREFITO + comprovação de atuação na área + aprovação em exame de conhecimento e prova de títulos.</p></div>
+        <div class="border-t border-slate-100 pt-4">
+          <p class="text-xs font-bold text-slate-400 uppercase tracking-wider px-2 mb-3">Seu Progresso</p>
+          <div class="px-2">
+            <div class="flex justify-between text-xs font-semibold text-slate-600 mb-1">
+              <span>Questões Respondidas</span>
+              <span id="quiz-progress-text">0 / 10</span>
+            </div>
+            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+              <div id="quiz-progress-bar" class="bg-emerald-500 h-full w-0 transition-all duration-300"></div>
+            </div>
+          </div>
+        </div>
 
-  <div class="grid2">
-    <div class="card">
-      <div class="card-title"><i class="ti ti-needle" aria-hidden="true"></i> 1. Acupuntura</div>
-      <p>Aplicação de agulhas e estimulação de pontos cutâneos para reequilíbrio energético e homeostase. Indicada especialmente para dores crônicas miofasciais. <span class="badge bp">Interprofissional</span> — compartilhada com médicos, enfermeiros, TO, biomédicos.</p>
+        <!-- Bloco do Estudante de Cacoal -->
+        <div class="bg-gradient-to-br from-indigo-50 to-brand-50 p-4 rounded-xl border border-indigo-100 text-xs">
+          <span class="font-bold text-indigo-900 flex items-center gap-1.5 mb-1">
+            <i class="ti ti-map-pin"></i> Foco Regional RO
+          </span>
+          <p class="text-indigo-800 leading-relaxed">
+            Fisioterapia é uma profissão com alto índice de absorção na região de Cacoal e Zona da Mata, impulsionada pelo crescimento de polos de saúde privada e pela demanda do agronegócio por Fisioterapia do Trabalho.
+          </p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Conteúdo Principal (Direita) -->
+    <div class="lg:w-3/4 space-y-6">
+
+      <!-- MODULO: DASHBOARD / ESTUDO ATIVO -->
+      <section id="tab-dashboard" class="tab-content block space-y-6">
+        
+        <!-- Boas-vindas e Status -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm relative overflow-hidden">
+          <div class="absolute right-0 top-0 h-full w-1/3 bg-gradient-to-l from-indigo-50/50 to-transparent pointer-events-none"></div>
+          <div class="relative z-10 space-y-3">
+            <span class="bg-brand-100 text-brand-800 text-xs font-extrabold px-3 py-1 rounded-full uppercase tracking-wider">Dashboard de Estudos</span>
+            <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">Roteiro Completo de Aprendizagem</h2>
+            <p class="text-slate-600 text-sm md:text-base leading-relaxed max-w-2xl">
+              Bem-vindo ao seu ecossistema ativo de Fisioterapia. Desenvolvido para centralizar o estudo de anatomia funcional, marcos jurídicos, bioética e as especialidades profissionais reconhecidas pelo COFFITO.
+            </p>
+            <div class="flex gap-2 flex-wrap pt-2">
+              <button onclick="switchTab('fundamentos')" class="bg-brand-600 hover:bg-brand-700 text-white font-semibold text-xs px-4 py-2.5 rounded-xl shadow-sm transition-all flex items-center gap-1.5">
+                Iniciar Teoria <i class="ti ti-arrow-right"></i>
+              </button>
+              <button onclick="switchTab('simulado')" class="bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs px-4 py-2.5 rounded-xl transition-all flex items-center gap-1.5">
+                Praticar com Questões <i class="ti ti-checkbox"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1. SIMULADOR DE ELETROTERAPIA (Inédito/Ativo) -->
+        <div id="simulador-box" class="bg-white rounded-3xl p-6 border border-indigo-200 shadow-sm space-y-6">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-slate-100 pb-4">
+            <div>
+              <span class="text-xs font-extrabold text-emerald-600 uppercase tracking-widest block mb-1">Laboratório Virtual</span>
+              <h3 class="text-lg font-bold text-slate-950 flex items-center gap-2">
+                <i class="ti ti-bolt text-emerald-500"></i> Simulador de Parâmetros Clínicos (TENS & FES)
+              </h3>
+            </div>
+            <span class="bg-emerald-50 text-emerald-700 text-xs font-semibold px-2.5 py-1 rounded-lg">Prática do 1º Período</span>
+          </div>
+
+          <p class="text-slate-600 text-sm leading-relaxed">
+            No primeiro período você aprende sobre <strong>recursos terapêuticos</strong>. Experimente ajustar os parâmetros abaixo para simular prescrições ideais que são cobradas em provas práticas de anatomia e eletroterapia.
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+            
+            <!-- Controles do Simulador -->
+            <div class="md:col-span-5 space-y-4 bg-slate-50 p-4 rounded-2xl border border-slate-200/60">
+              <div>
+                <label class="block text-xs font-bold text-slate-700 uppercase mb-2">Prescrição Desejada</label>
+                <div class="grid grid-cols-2 gap-2">
+                  <button onclick="setSimParams('analg-gate')" class="sim-preset-btn active bg-brand-600 text-white font-semibold text-xs py-2 px-3 rounded-lg border border-brand-500 text-center transition-all">
+                    Analgesia Rápida (Teoria das Comportas)
+                  </button>
+                  <button onclick="setSimParams('analg-endo')" class="sim-preset-btn bg-white hover:bg-slate-100 text-slate-700 font-semibold text-xs py-2 px-3 rounded-lg border border-slate-300 text-center transition-all">
+                    Analgesia Lenta (Liberação de Endorfinas)
+                  </button>
+                  <button onclick="setSimParams('fes-strengthen')" class="sim-preset-btn bg-white hover:bg-slate-100 text-slate-700 font-semibold text-xs py-2 px-3 rounded-lg border border-slate-300 text-center transition-all col-span-2">
+                    Fortalecimento Muscular (FES)
+                  </button>
+                </div>
+              </div>
+
+              <!-- Controles deslizantes (Interativos) -->
+              <div class="space-y-3">
+                <div>
+                  <div class="flex justify-between text-xs font-bold text-slate-700 mb-1">
+                    <span>Frequência (Hz)</span>
+                    <span id="sim-freq-val" class="text-brand-600">100 Hz</span>
+                  </div>
+                  <input type="range" id="sim-freq" min="2" max="150" value="100" class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-600" oninput="updateSimWave()">
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-xs font-bold text-slate-700 mb-1">
+                    <span>Largura de Pulso (µs)</span>
+                    <span id="sim-pulse-val" class="text-brand-600 font-mono">100 µs</span>
+                  </div>
+                  <input type="range" id="sim-pulse" min="50" max="300" value="100" class="w-full h-1.5 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-600" oninput="updateSimWave()">
+                </div>
+              </div>
+            </div>
+
+            <!-- Painel de Feedback do Efeito Fisiológico -->
+            <div class="md:col-span-7 flex flex-col justify-between space-y-4 border border-slate-200 rounded-2xl p-4">
+              
+              <!-- Animação Wave -->
+              <div class="bg-slate-900 rounded-xl p-3 h-24 flex items-center justify-center relative overflow-hidden">
+                <div class="absolute inset-0 bg-[radial-gradient(#1e1b4b_1px,transparent_1px)] [background-size:16px_16px] opacity-30"></div>
+                <!-- Ondas interativas (SVG) -->
+                <svg id="wave-svg" class="w-full h-full text-emerald-400 stroke-2" fill="none" viewBox="0 0 400 100">
+                  <path d="M 0,50 Q 10,20 20,50 T 40,50 T 60,50 T 80,50 T 100,50 T 120,50 T 140,50 T 160,50 T 180,50 T 200,50" />
+                </svg>
+                <div class="absolute bottom-2 right-2 text-[10px] font-mono text-slate-400 tracking-wider">Simulação do Sinal</div>
+              </div>
+
+              <!-- Análise do Impacto Clínico -->
+              <div class="bg-brand-50/50 rounded-xl p-3.5 border border-brand-100 text-xs">
+                <h4 class="font-bold text-brand-900 mb-1 flex items-center gap-1">
+                  <i class="ti ti-activity-heartbeat"></i> Efeito Fisiológico no Tecido Humano
+                </h4>
+                <p id="sim-explanation" class="text-brand-800 leading-relaxed">
+                  Frequências elevadas (80-120 Hz) e menor duração de pulso bloqueiam a transmissão do estímulo doloroso na medula espinhal antes de chegar ao cérebro. Alívio de dor imediato para pós-trauma agudo.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 2. FLASHCARDS ATIVOS (ESTUDO RÁPIDO) -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
+          <div class="border-b border-slate-100 pb-3">
+            <span class="text-xs font-extrabold text-indigo-600 uppercase tracking-widest block mb-1">Mecanismo de Memorização</span>
+            <h3 class="text-lg font-bold text-slate-950 flex items-center gap-2">
+              <i class="ti ti-cards text-brand-600"></i> Estudo por Flashcards (Active Recall)
+            </h3>
+          </div>
+          <p class="text-slate-600 text-sm">
+            Clique no cartão para virá-lo e revelar a resposta. Use este método para reter os conceitos de lei e definições oficiais do COFFITO que caem em provas.
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 pt-2">
+            
+            <!-- Card 1 -->
+            <div class="h-44 [perspective:1000px] cursor-pointer" onclick="flipCard(this)">
+              <div class="flashcard-inner relative w-full h-full text-center shadow-sm rounded-2xl border border-slate-200 bg-white">
+                <div class="flashcard-front absolute inset-0 w-full h-full flex flex-col justify-between p-4 bg-gradient-to-b from-indigo-50/40 to-white rounded-2xl">
+                  <span class="text-[10px] font-bold text-brand-600 tracking-widest uppercase">Anatomia Clínica</span>
+                  <p class="text-xs font-semibold text-slate-800 my-auto">Qual o Objeto de Estudo formal da Fisioterapia segundo o COFFITO?</p>
+                  <span class="text-[10px] text-slate-400 font-medium">Toque para revelar</span>
+                </div>
+                <div class="flashcard-back absolute inset-0 w-full h-full flex flex-col justify-between p-4 bg-indigo-900 text-white rounded-2xl">
+                  <span class="text-[10px] font-bold text-indigo-200 tracking-widest uppercase">Resposta Correta</span>
+                  <p class="text-xs font-semibold leading-relaxed my-auto">O movimento humano em todas as suas formas de expressão e potencialidades (Res. COFFITO-80/1987).</p>
+                  <span class="text-[10px] text-indigo-300 font-medium">Toque para voltar</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="h-44 [perspective:1000px] cursor-pointer" onclick="flipCard(this)">
+              <div class="flashcard-inner relative w-full h-full text-center shadow-sm rounded-2xl border border-slate-200 bg-white">
+                <div class="flashcard-front absolute inset-0 w-full h-full flex flex-col justify-between p-4 bg-gradient-to-b from-indigo-50/40 to-white rounded-2xl">
+                  <span class="text-[10px] font-bold text-brand-600 tracking-widest uppercase">Bioética</span>
+                  <p class="text-xs font-semibold text-slate-800 my-auto">Qual a diferença ética entre Negligência e Imperícia?</p>
+                  <span class="text-[10px] text-slate-400 font-medium">Toque para revelar</span>
+                </div>
+                <div class="flashcard-back absolute inset-0 w-full h-full flex flex-col justify-between p-4 bg-amber-900 text-white rounded-2xl">
+                  <span class="text-[10px] font-bold text-amber-200 tracking-widest uppercase">Resposta Correta</span>
+                  <p class="text-[11px] leading-snug my-auto">Negligência é desleixo/omissão (deixar paciente sozinho); Imperícia é falta de conhecimento técnico para aplicar uma técnica.</p>
+                  <span class="text-[10px] text-amber-200 font-medium">Toque para voltar</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="h-44 [perspective:1000px] cursor-pointer" onclick="flipCard(this)">
+              <div class="flashcard-inner relative w-full h-full text-center shadow-sm rounded-2xl border border-slate-200 bg-white">
+                <div class="flashcard-front absolute inset-0 w-full h-full flex flex-col justify-between p-4 bg-gradient-to-b from-indigo-50/40 to-white rounded-2xl">
+                  <span class="text-[10px] font-bold text-brand-600 tracking-widest uppercase">Legislação</span>
+                  <p class="text-xs font-semibold text-slate-800 my-auto">Qual lei fixou a jornada de 30 horas semanais?</p>
+                  <span class="text-[10px] text-slate-400 font-medium">Toque para revelar</span>
+                </div>
+                <div class="flashcard-back absolute inset-0 w-full h-full flex flex-col justify-between p-4 bg-emerald-900 text-white rounded-2xl">
+                  <span class="text-[10px] font-bold text-emerald-200 tracking-widest uppercase">Resposta Correta</span>
+                  <p class="text-xs font-semibold leading-relaxed my-auto">A Lei Federal nº 8.856/1994, que se aplica a fisioterapeutas e terapeutas ocupacionais.</p>
+                  <span class="text-[10px] text-emerald-200 font-medium">Toque para voltar</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="h-44 [perspective:1000px] cursor-pointer" onclick="flipCard(this)">
+              <div class="flashcard-inner relative w-full h-full text-center shadow-sm rounded-2xl border border-slate-200 bg-white">
+                <div class="flashcard-front absolute inset-0 w-full h-full flex flex-col justify-between p-4 bg-gradient-to-b from-indigo-50/40 to-white rounded-2xl">
+                  <span class="text-[10px] font-bold text-brand-600 tracking-widest uppercase">Ética Digital</span>
+                  <p class="text-xs font-semibold text-slate-800 my-auto">É permitido expor fotos "Antes e Depois" com termo assinado?</p>
+                  <span class="text-[10px] text-slate-400 font-medium">Toque para revelar</span>
+                </div>
+                <div class="flashcard-back absolute inset-0 w-full h-full flex flex-col justify-between p-4 bg-rose-950 text-white rounded-2xl">
+                  <span class="text-[10px] font-bold text-rose-200 tracking-widest uppercase">Resposta Correta</span>
+                  <p class="text-xs font-semibold leading-relaxed my-auto">Não. A Resolução COFFITO nº 519/2020 proíbe terminantemente para fins de autopromoção.</p>
+                  <span class="text-[10px] text-rose-300 font-medium">Toque para voltar</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 3. BLOCO NOTEPAD / SEU ESPAÇO DE ESTUDO -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <h3 class="text-lg font-bold text-slate-950 flex items-center gap-2">
+              <i class="ti ti-notes text-brand-600"></i> Caderno de Notas Acadêmicas
+            </h3>
+            <span class="text-xs text-slate-400">Salvo automaticamente</span>
+          </div>
+          <p class="text-slate-600 text-sm">
+            Digite aqui tópicos importantes passados pelos professores no laboratório da UNINASSAU Cacoal para consolidar sua revisão de classe.
+          </p>
+          <div class="space-y-2">
+            <textarea id="academic-notepad" class="w-full h-32 p-3 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 font-medium placeholder:text-slate-400" placeholder="Escreva suas anotações aqui... Ex: 'Lembrar de focar na diferença de diagnóstico cinético-funcional para a prova teórica de quarta-feira...'" oninput="saveNotes()"></textarea>
+            <div class="flex justify-end gap-2">
+              <button onclick="clearNotes()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-lg transition-all">Limpar</button>
+              <button onclick="copyNotes()" class="bg-brand-600 hover:bg-brand-700 text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition-all">Copiar Notas</button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- MODULO: FUNDAMENTOS -->
+      <section id="tab-fundamentos" class="tab-content hidden space-y-6">
+        
+        <!-- Cartão Principal de Definição -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
+          <div class="flex items-center gap-3 text-brand-700">
+            <div class="bg-brand-100 p-2.5 rounded-xl">
+              <i class="ti ti-book text-2xl"></i>
+            </div>
+            <div>
+              <span class="text-xs font-bold text-brand-600 uppercase tracking-widest block">Consenso Profissional</span>
+              <h3 class="text-xl font-extrabold text-slate-900 tracking-tight">O que é a Fisioterapia?</h3>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+            <div class="space-y-3">
+              <p class="text-slate-600 text-sm leading-relaxed">
+                Segundo o Conselho Federal de Fisioterapia e Terapia Ocupacional (COFFITO), trata-se de uma ciência da saúde aplicada cuja finalidade se direciona a estudar, diagnosticar, prevenir e tratar desordens funcionais do corpo.
+              </p>
+              <p class="text-slate-600 text-sm leading-relaxed">
+                As áreas de abordagem estão vinculadas a problemas genéticos, decorrentes de traumatismos e enfermidades sistêmicas que influem no equilíbrio cinético.
+              </p>
+            </div>
+            <div class="bg-indigo-50/50 rounded-2xl p-4 border border-indigo-100 space-y-2">
+              <h4 class="font-bold text-indigo-950 text-xs uppercase tracking-wider flex items-center gap-1">
+                <i class="ti ti-target-arrow"></i> Objeto Formal de Estudo
+              </h4>
+              <p class="text-indigo-900 text-xs leading-relaxed">
+                O foco metodológico da Fisioterapia assenta-se no <strong>Movimento Humano</strong>. Esta normatização foi conquistada com a promulgação da <strong>Resolução COFFITO nº 80/1987</strong>, consolidando a identidade epistemológica da profissão.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Diferença Diagnóstica Importante -->
+        <div class="bg-gradient-to-br from-indigo-900 to-slate-900 text-white rounded-3xl p-6 shadow-md space-y-6">
+          <div class="space-y-1">
+            <span class="text-indigo-300 text-xs font-extrabold uppercase tracking-widest">Matéria Crítica de Avaliação</span>
+            <h3 class="text-xl font-bold tracking-tight">Diagnóstico Médico vs. Diagnóstico Fisioterapêutico</h3>
+          </div>
+          
+          <p class="text-indigo-100 text-sm leading-relaxed">
+            O desconhecimento deste marco conceitual gera punições acadêmicas frequentes no primeiro semestre. Compreenda as distinções clínicas claras abaixo:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+            <div class="bg-white/10 p-4 rounded-2xl border border-white/10 space-y-2">
+              <span class="bg-rose-500 text-white font-extrabold px-2 py-0.5 rounded text-[10px] uppercase tracking-wider inline-block">Diagnóstico Médico (Nosológico)</span>
+              <p class="text-white text-sm font-bold">Concentra-se na Doença / Causa</p>
+              <p class="text-indigo-200 leading-relaxed">
+                Foco na patologia que gera os danos anatômicos no tecido ou sistema do paciente.
+              </p>
+              <div class="bg-slate-950/40 p-2.5 rounded-lg border border-slate-700 font-mono text-indigo-300">
+                Exemplo: CID M25.5 - Dor articular no ombro (Bursite subacromial)
+              </div>
+            </div>
+
+            <div class="bg-white/10 p-4 rounded-2xl border border-white/10 space-y-2">
+              <span class="bg-emerald-500 text-white font-extrabold px-2 py-0.5 rounded text-[10px] uppercase tracking-wider inline-block font-sans">Diagnóstico Fisioterapêutico (Cinético-Funcional)</span>
+              <p class="text-white text-sm font-bold">Concentra-se na Disfunção Física</p>
+              <p class="text-indigo-200 leading-relaxed">
+                Foco na repercussão do dano na mobilidade, funcionalidade, dor e restrições articulares.
+              </p>
+              <div class="bg-slate-950/40 p-2.5 rounded-lg border border-slate-700 font-mono text-emerald-300">
+                Exemplo: Limitação de 60º de abdução com dor acentuada em arco funcional de movimento.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Níveis de Atenção SUS -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
+          <div class="border-b border-slate-100 pb-3">
+            <h3 class="text-lg font-bold text-slate-950 flex items-center gap-2">
+              <i class="ti ti-layout-grid-add text-emerald-600"></i> Níveis de Atenção à Saúde (Estratégia do SUS)
+            </h3>
+          </div>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <!-- Primário -->
+            <div class="bg-emerald-50/40 rounded-2xl p-4 border border-emerald-100 space-y-2.5">
+              <div class="flex items-center gap-2">
+                <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2 py-0.5 rounded">Primário</span>
+                <span class="text-xs text-slate-400 font-medium">Básico</span>
+              </div>
+              <h4 class="font-bold text-slate-900 text-sm">Foco na Promoção e Prevenção</h4>
+              <p class="text-slate-600 text-xs leading-relaxed">
+                Atuação em Unidades Básicas de Saúde, eNASF (Equipes Ampliadas), cinesioterapia laboral preventiva nas indústrias, exercícios respiratórios para gestantes e programas comunitários para idosos visando evitar quedas.
+              </p>
+            </div>
+
+            <!-- Secundário -->
+            <div class="bg-indigo-50/40 rounded-2xl p-4 border border-indigo-100 space-y-2.5">
+              <div class="flex items-center gap-2">
+                <span class="bg-indigo-100 text-indigo-800 text-xs font-bold px-2 py-0.5 rounded">Secundário</span>
+                <span class="text-xs text-slate-400 font-medium">Ambulatorial</span>
+              </div>
+              <h4 class="font-bold text-slate-900 text-sm">Tratamento Precoce e Especializado</h4>
+              <p class="text-slate-600 text-xs leading-relaxed">
+                Ações em ambulatórios especializados, centros integrados de reabilitação física e UPAs. O atendimento é estruturado para remediar patologias agudas ou crônicas em curso para que não causem invalidez.
+              </p>
+            </div>
+
+            <!-- Terciário -->
+            <div class="bg-rose-50/40 rounded-2xl p-4 border border-rose-100 space-y-2.5">
+              <div class="flex items-center gap-2">
+                <span class="bg-rose-100 text-rose-800 text-xs font-bold px-2 py-0.5 rounded">Terciário</span>
+                <span class="text-xs text-slate-400 font-medium">Alta Complexidade</span>
+              </div>
+              <h4 class="font-bold text-slate-900 text-sm">Reabilitação Complexa & UTI</h4>
+              <p class="text-slate-600 text-xs leading-relaxed">
+                Foco no leito hospitalar e unidades de terapia intensiva (UTI) de neonatologia e adultos. Cuida de ventilação mecânica invasiva e não-invasiva, desmame ventilatório, mobilização precoce pós-infarto e prevenção de escaras.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Etapas do Processo Fisioterapêutico -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
+          <div class="border-b border-slate-100 pb-3">
+            <h3 class="text-lg font-bold text-slate-950 flex items-center gap-2">
+              <i class="ti ti-list-numbers text-brand-600"></i> Etapas do Processo Fisioterapêutico (Fluxo Clínico)
+            </h3>
+          </div>
+
+          <div class="relative pl-6 border-l-2 border-brand-200 space-y-6 text-sm">
+            
+            <div class="relative">
+              <div class="absolute -left-[31px] top-0 bg-brand-600 text-white font-bold w-4.5 h-4.5 rounded-full flex items-center justify-center text-[10px] p-2.5">1</div>
+              <h4 class="font-bold text-slate-900">Consulta / Anamnese Integral</h4>
+              <p class="text-slate-600 text-xs leading-relaxed mt-1">
+                Entrevista clínica para recolher a queixa principal (QP), história da moléstia atual (HMA) e antecedentes mórbidos, acompanhada de palpação, goniometria e testes específicos. Não exige requisição prévia de médicos devido à autonomia legal.
+              </p>
+            </div>
+
+            <div class="relative">
+              <div class="absolute -left-[31px] top-0 bg-brand-600 text-white font-bold w-4.5 h-4.5 rounded-full flex items-center justify-center text-[10px] p-2.5">2</div>
+              <h4 class="font-bold text-slate-900">Diagnóstico Cinético-Funcional</h4>
+              <p class="text-slate-600 text-xs leading-relaxed mt-1">
+                Laudo qualitativo e quantitativo que detalha as deficiências articulares, musculares, neurais ou metabólicas do indivíduo relacionadas ao movimento corporal.
+              </p>
+            </div>
+
+            <div class="relative">
+              <div class="absolute -left-[31px] top-0 bg-brand-600 text-white font-bold w-4.5 h-4.5 rounded-full flex items-center justify-center text-[10px] p-2.5">3</div>
+              <h4 class="font-bold text-slate-900">Prognóstico Fisioterapêutico</h4>
+              <p class="text-slate-600 text-xs leading-relaxed mt-1">
+                Previsão de recuperação funcional baseada em evidências, com determinação do tempo de reabilitação e definição das metas clínicas em curto, médio e longo prazo.
+              </p>
+            </div>
+
+            <div class="relative">
+              <div class="absolute -left-[31px] top-0 bg-brand-600 text-white font-bold w-4.5 h-4.5 rounded-full flex items-center justify-center text-[10px] p-2.5">4</div>
+              <h4 class="font-bold text-slate-900">Prescrição & Plano de Intervenção</h4>
+              <p class="text-slate-600 text-xs leading-relaxed mt-1">
+                Escolha dos recursos físicos (térmicos, elétricos, mecânicos) e dosimetria precisa dos exercícios de mobilização, com frequência diária/semanal adequada à fase de cicatrização do paciente.
+              </p>
+            </div>
+
+            <div class="relative">
+              <div class="absolute -left-[31px] top-0 bg-emerald-600 text-white font-bold w-4.5 h-4.5 rounded-full flex items-center justify-center text-[10px] p-2.5">5</div>
+              <h4 class="font-bold text-slate-900">Alta Fisioterapêutica (Ato Exclusivo)</h4>
+              <p class="text-slate-600 text-xs leading-relaxed mt-1">
+                Encerramento formal do tratamento ao se obter o máximo de retorno funcional planejado ou consolidação de quadro estabilizado, com entrega de roteiro domiciliar preventivo. É privativo e de responsabilidade ética exclusiva do fisioterapeuta.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Glossário Acadêmico Interativo -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-3 border-b border-slate-100 pb-3">
+            <h3 class="text-lg font-bold text-slate-950 flex items-center gap-2">
+              <i class="ti ti-vocabulary text-brand-600"></i> Glossário de Termos do 1º Período
+            </h3>
+            <input type="text" id="glossary-search" placeholder="Buscar termos..." class="text-xs px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-1 focus:ring-brand-500 w-full md:w-48" oninput="filterGlossary()">
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="border-b border-slate-200 text-slate-400 font-bold uppercase">
+                  <th class="py-2.5 px-3">Termo</th>
+                  <th class="py-2.5 px-3">Definição Acadêmica</th>
+                </tr>
+              </thead>
+              <tbody id="glossary-tbody" class="divide-y divide-slate-100 font-medium">
+                <tr class="glossary-row">
+                  <td class="py-3 px-3 text-brand-700 font-bold">Cinesioterapia</td>
+                  <td class="py-3 px-3 text-slate-600">O tratamento de disfunções por meio do movimento planejado (exercícios ativos, passivos ou assistidos).</td>
+                </tr>
+                <tr class="glossary-row">
+                  <td class="py-3 px-3 text-brand-700 font-bold">Autonomia Clínica</td>
+                  <td class="py-3 px-3 text-slate-600">Capacidade jurídica de diagnosticar, estabelecer prognóstico, prescrever tratamentos e dar alta sem interposição de outra carreira.</td>
+                </tr>
+                <tr class="glossary-row">
+                  <td class="py-3 px-3 text-brand-700 font-bold">Eletroterapia</td>
+                  <td class="py-3 px-3 text-slate-600">Aplicação de correntes elétricas de baixa ou média frequência para estímulo muscular ou modulação de dor local.</td>
+                </tr>
+                <tr class="glossary-row">
+                  <td class="py-3 px-3 text-brand-700 font-bold">Hidroterapia</td>
+                  <td class="py-3 px-3 text-slate-600">Uso terapêutico da água aquecida sob influência da pressão hidrostática e do empuxo para reduzir descarga de peso.</td>
+                </tr>
+                <tr class="glossary-row">
+                  <td class="py-3 px-3 text-brand-700 font-bold">Diagnóstico Nosológico</td>
+                  <td class="py-3 px-3 text-slate-600">Diagnóstico médico clássico focado em nomear a doença ou disfunção biológica subjacente.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- MODULO: HISTORIA -->
+      <section id="tab-historia" class="tab-content hidden space-y-6">
+        
+        <!-- Timeline Global -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-6">
+          <div class="border-b border-slate-100 pb-3">
+            <span class="text-xs font-extrabold text-brand-600 uppercase tracking-widest block mb-1">Evolução Histórica</span>
+            <h3 class="text-lg font-bold text-slate-950 flex items-center gap-2">
+              <i class="ti ti-timeline text-brand-600"></i> Da Antiguidade à Consolidação Mundial
+            </h3>
+          </div>
+
+          <!-- Componente Visual Timeline -->
+          <div class="space-y-6 relative before:absolute before:inset-y-0 before:left-3.5 before:w-0.5 before:bg-slate-200 pl-8">
+            
+            <!-- Item 1 -->
+            <div class="relative">
+              <div class="absolute -left-[35px] top-1 w-4 h-4 rounded-full bg-indigo-600 border-4 border-white shadow"></div>
+              <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-1">
+                <span class="text-xs font-bold text-indigo-700">2698 a.C. — China e Índia Antiga</span>
+                <h4 class="font-bold text-slate-900 text-sm">Práticas Orientais Primitivas</h4>
+                <p class="text-slate-600 text-xs leading-relaxed">
+                  Os primeiros exercícios terapêuticos integrados chamavam-se exercícios respiratórios de Kung-Fu e Yoga, com o escopo de desobstruir órgãos internos congestionados.
+                </p>
+              </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="relative">
+              <div class="absolute -left-[35px] top-1 w-4 h-4 rounded-full bg-indigo-600 border-4 border-white shadow"></div>
+              <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-1">
+                <span class="text-xs font-bold text-indigo-700">Grécia Antiga</span>
+                <h4 class="font-bold text-slate-900 text-sm">Bases Científicas Iniciais</h4>
+                <p class="text-slate-600 text-xs leading-relaxed">
+                  Hipócrates (considerado o Pai da Medicina) recomendava hidroterapia, massagem em tecidos profundos e ginástica curativa, tendo cunhado o pilar empírico: <em>"A função estimula o órgão"</em>.
+                </p>
+              </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="relative">
+              <div class="absolute -left-[35px] top-1 w-4 h-4 rounded-full bg-rose-500 border-4 border-white shadow"></div>
+              <div class="bg-rose-50/40 p-4 rounded-2xl border border-rose-100 space-y-1">
+                <span class="text-xs font-bold text-rose-700">Idade Média</span>
+                <h4 class="font-bold text-slate-900 text-sm">O Longo Período de Ostracismo</h4>
+                <p class="text-slate-600 text-xs leading-relaxed">
+                  A valorização do corpo humano e da reabilitação decai com a hegemonia de pensamentos de ascese e autoflagelação, provocando um forte retrocesso nos estudos mecânicos de exercícios preventivos.
+                </p>
+              </div>
+            </div>
+
+            <!-- Item 4 -->
+            <div class="relative">
+              <div class="absolute -left-[35px] top-1 w-4 h-4 rounded-full bg-indigo-600 border-4 border-white shadow"></div>
+              <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-1">
+                <span class="text-xs font-bold text-indigo-700">1813 — Instituto de Estocolmo</span>
+                <h4 class="font-bold text-slate-900 text-sm">Pehr Henrik Ling: Fisioterapia Moderna</h4>
+                <p class="text-slate-600 text-xs leading-relaxed">
+                  Ling fundou o Royal Central Institute of Gymnastics na Suécia. Foi o primeiro a categorizar cientificamente as propriedades mecânicas da ginástica e cinesioterapia aplicadas à fadiga muscular e traumas.
+                </p>
+              </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="relative">
+              <div class="absolute -left-[35px] top-1 w-4 h-4 rounded-full bg-indigo-600 border-4 border-white shadow"></div>
+              <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-1">
+                <span class="text-xs font-bold text-indigo-700">1914-1945 — Guerras Mundiais</span>
+                <h4 class="font-bold text-slate-900 text-sm">Urgência de Reabilitação Coletiva</h4>
+                <p class="text-slate-600 text-xs leading-relaxed">
+                  O contingente avassalador de soldados mutilados necessitava de reinserção social urgente. Ocorreu o surgimento das <em>Reconstruction Aides</em> nos EUA, acelerando a fundação dos primeiros conselhos.
+                </p>
+              </div>
+            </div>
+
+            <!-- Item 6 -->
+            <div class="relative">
+              <div class="absolute -left-[35px] top-1 w-4 h-4 rounded-full bg-emerald-500 border-4 border-white shadow"></div>
+              <div class="bg-emerald-50/40 p-4 rounded-2xl border border-emerald-100 space-y-1">
+                <span class="text-xs font-bold text-emerald-700">1951 — Fundação da World Physiotherapy</span>
+                <h4 class="font-bold text-slate-900 text-sm">Unificação Global da Carreira</h4>
+                <p class="text-slate-600 text-xs leading-relaxed">
+                  No dia 8 de Setembro, fundou-se em Copenhague a confederação global para regulamentação das diretrizes e reconhecimento de currículos de reabilitação.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Timeline Brasil -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-6">
+          <div class="border-b border-slate-100 pb-3">
+            <h3 class="text-lg font-bold text-slate-950 flex items-center gap-2">
+              <i class="ti ti-flag-brasil text-emerald-600"></i> Marcos da Consolidação no Território Nacional
+            </h3>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-2">
+              <div class="flex items-center gap-2">
+                <span class="bg-rose-100 text-rose-800 text-xs font-bold px-2 py-0.5 rounded">1963</span>
+                <span class="text-xs text-slate-400 font-semibold">O Erro Histórico</span>
+              </div>
+              <h4 class="font-bold text-slate-900 text-sm">Parecer CFE nº 388/1963</h4>
+              <p class="text-slate-600 text-xs leading-relaxed">
+                Este parecer rebaixou a Fisioterapia ao status de "Auxiliar Médico" sem poder decisório sobre a dose ou alta de tratamento, gerando grande luta de classe pela soberania acadêmica.
+              </p>
+            </div>
+
+            <div class="bg-emerald-50/30 p-4 rounded-2xl border border-emerald-100 space-y-2">
+              <div class="flex items-center gap-2">
+                <span class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2 py-0.5 rounded">1969</span>
+                <span class="text-xs text-slate-400 font-semibold">O Pilar do Dia Nacional</span>
+              </div>
+              <h4 class="font-bold text-slate-900 text-sm">Decreto-Lei nº 938</h4>
+              <p class="text-slate-600 text-xs leading-relaxed">
+                Assinado em 13 de outubro de 1969, restituiu em definitivo o status de profissão de nível superior com autonomia clínica. O dia de sua assinatura é celebrado nacionalmente como o Dia do Fisioterapeuta.
+              </p>
+            </div>
+
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-100 space-y-2">
+              <div class="flex items-center gap-2">
+                <span class="bg-slate-200 text-slate-800 text-xs font-bold px-2 py-0.5 rounded">1975</span>
+                <span class="text-xs text-slate-400 font-semibold">O Órgão Fiscalizador</span>
+              </div>
+              <h4 class="font-bold text-slate-900 text-sm">Lei Federal nº 6.316</h4>
+              <p class="text-slate-600 text-xs leading-relaxed">
+                Cria o sistema integrado COFFITO (Federal) / CREFITOs (Regionais), dotando a classe de ferramentas para coibir o exercício ilegal da profissão.
+              </p>
+            </div>
+
+            <div class="bg-indigo-50/30 p-4 rounded-2xl border border-indigo-100 space-y-2">
+              <div class="flex items-center gap-2">
+                <span class="bg-indigo-100 text-indigo-800 text-xs font-bold px-2 py-0.5 rounded">1994</span>
+                <span class="text-xs text-slate-400 font-semibold">Direito do Trabalho</span>
+              </div>
+              <h4 class="font-bold text-slate-900 text-sm">Lei Federal nº 8.856</h4>
+              <p class="text-slate-600 text-xs leading-relaxed">
+                Legislação trabalhista histórica que estabeleceu a jornada máxima de trabalho de <strong>30 horas semanais</strong> para os profissionais em território nacional.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+      </section>
+
+      <!-- MODULO: LEGISLACAO -->
+      <section id="tab-legislacao" class="tab-content hidden space-y-6">
+        
+        <!-- Cartão de Direitos e Deveres -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
+          <div class="flex items-center gap-3 text-brand-700">
+            <div class="bg-brand-100 p-2.5 rounded-xl">
+              <i class="ti ti-gavel text-2xl"></i>
+            </div>
+            <div>
+              <span class="text-xs font-bold text-brand-600 uppercase tracking-widest block font-sans">Estatuto Deontológico</span>
+              <h3 class="text-xl font-extrabold text-slate-900 tracking-tight">O Código de Ética (Resolução COFFITO nº 424/2013)</h3>
+            </div>
+          </div>
+          
+          <p class="text-slate-600 text-sm leading-relaxed">
+            O profissional deve reger seus atendimentos sob a égide dos quatro princípios clássicos da Bioética Mundial:
+          </p>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-semibold">
+            <div class="p-4 bg-emerald-50 rounded-2xl border border-emerald-100">
+              <span class="text-emerald-800 font-bold flex items-center gap-1.5 mb-1">
+                <i class="ti ti-circle-check-filled"></i> Beneficência
+              </span>
+              <p class="text-slate-600 font-medium leading-relaxed">
+                Aplicar as melhores condutas com bases científicas visando unicamente o restabelecimento clínico de quem sofre.
+              </p>
+            </div>
+
+            <div class="p-4 bg-rose-50 rounded-2xl border border-rose-100">
+              <span class="text-rose-800 font-bold flex items-center gap-1.5 mb-1">
+                <i class="ti ti-circle-minus-filled"></i> Não-Maleficência
+              </span>
+              <p class="text-slate-600 font-medium leading-relaxed">
+                Comprometimento solene de evitar intervenções desnecessárias que possam gerar novos prejuízos anatômicos ao paciente.
+              </p>
+            </div>
+
+            <div class="p-4 bg-indigo-50 rounded-2xl border border-indigo-100">
+              <span class="text-indigo-800 font-bold flex items-center gap-1.5 mb-1">
+                <i class="ti ti-shield-half-filled"></i> Autonomia do Paciente
+              </span>
+              <p class="text-slate-600 font-medium leading-relaxed">
+                Respeito ao livre-arbítrio da pessoa e aplicação do Termo de Consentimento Livre e Esclarecido antes das mobilizações.
+              </p>
+            </div>
+
+            <div class="p-4 bg-yellow-50 rounded-2xl border border-yellow-100">
+              <span class="text-yellow-800 font-bold flex items-center gap-1.5 mb-1">
+                <i class="ti ti-balance"></i> Justiça Distributiva
+              </span>
+              <p class="text-slate-600 font-medium leading-relaxed">
+                Oferecer cuidado equitativo e universal, sem distinção de raça, classe, gênero ou credos, adaptando o cuidado às minorias.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Infrações Graves e Pegadinhas -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
+          <div class="border-b border-slate-100 pb-3">
+            <h3 class="text-lg font-bold text-slate-950 flex items-center gap-2">
+              <i class="ti ti-alert-triangle-filled text-rose-500"></i> Infrações de Responsabilidade Profissional
+            </h3>
+          </div>
+
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Distinga de forma clara estes três vetores de imperfeição técnica para não errar nos estudos de casos éticos:
+          </p>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+            <div class="bg-amber-50/55 p-4 rounded-2xl border border-amber-200 space-y-2">
+              <h4 class="font-bold text-amber-900 text-sm">1. Negligência</h4>
+              <p class="text-slate-600 leading-relaxed">
+                É a atitude omissiva, a inércia injustificada diante de um risco conhecido.
+              </p>
+              <div class="bg-amber-100 p-2 rounded-lg text-amber-950 font-medium">
+                <strong>Exemplo clássico:</strong> Deixar o paciente no turbilhão de água aquecida ou sob aplicação de infravermelho e sair da sala de atendimento.
+              </div>
+            </div>
+
+            <div class="bg-indigo-50/55 p-4 rounded-2xl border border-indigo-200 space-y-2">
+              <h4 class="font-bold text-indigo-900 text-sm">2. Imperícia</h4>
+              <p class="text-slate-600 leading-relaxed">
+                É a ausência de domínio técnico e científico específico para executar um ato.
+              </p>
+              <div class="bg-indigo-100 p-2 rounded-lg text-indigo-950 font-medium">
+                <strong>Exemplo clássico:</strong> Aplicar uma técnica manipulativa cervical de alta velocidade (quiropraxia) sem ter o curso de especialização exigido.
+              </div>
+            </div>
+
+            <div class="bg-rose-50/55 p-4 rounded-2xl border border-rose-200 space-y-2">
+              <h4 class="font-bold text-rose-900 text-sm">3. Imprudência</h4>
+              <p class="text-slate-600 leading-relaxed">
+                É a conduta comissiva temerária. Você sabe do risco inerente, mas opta por agir rápido.
+              </p>
+              <div class="bg-rose-100 p-2 rounded-lg text-rose-950 font-medium">
+                <strong>Exemplo clássico:</strong> Mobilizar uma articulação de quadril sabendo que há suspeita de fratura óssea ativa na região do fêmur.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prontuário e Guarda Legal -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
+          <div class="border-b border-slate-100 pb-3">
+            <h3 class="text-lg font-bold text-slate-950 flex items-center gap-2">
+              <i class="ti ti-folder text-brand-600"></i> O Prontuário Fisioterapêutico (Resolução nº 415/2012)
+            </h3>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="md:col-span-2 space-y-3">
+              <p class="text-slate-600 text-sm leading-relaxed">
+                A confecção do prontuário é um <strong>ato clínico e legal obrigatório</strong> de todo profissional no território nacional. Trata-se de um registro documental pormenorizado do paciente que serve de respaldo contra processos éticos ou cíveis de imperícia.
+              </p>
+              <div class="bg-red-50 text-red-800 text-xs p-3.5 rounded-xl border border-red-100 font-semibold">
+                Cuidado com a Pegadinha das Bancas: O prazo mínimo de guarda obrigatória dos prontuários (sejam físicos ou digitalizados) é de <strong>20 anos</strong> após o último atendimento (e não 5 anos, como dita o bom senso administrativo de outras áreas).
+              </div>
+            </div>
+            
+            <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 flex flex-col justify-center items-center text-center">
+              <span class="text-5xl font-extrabold text-brand-700">20</span>
+              <span class="text-xs font-bold text-slate-800 uppercase tracking-widest mt-1">Anos de Guarda</span>
+              <span class="text-[10px] text-slate-400 mt-0.5">Prazo de Preservação Legal</span>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- MODULO: ESPECIALIDADES -->
+      <section id="tab-especialidades" class="tab-content hidden space-y-6">
+        
+        <!-- Apresentação do Título -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
+          <div class="flex items-center gap-3 text-brand-700">
+            <div class="bg-brand-100 p-2.5 rounded-xl">
+              <i class="ti ti-award text-2xl"></i>
+            </div>
+            <div>
+              <span class="text-xs font-bold text-brand-600 uppercase tracking-widest block">Carreiras no Brasil</span>
+              <h3 class="text-xl font-extrabold text-slate-900 tracking-tight">O Reconhecimento do Especialista pelo COFFITO</h3>
+            </div>
+          </div>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            Para conquistar o título legal de especialista chancelado pelo Conselho de Classe, o profissional necessita ter o registro ativo há mais de 2 anos, comprovar prática supervisionada e ser aprovado na prova nacional de títulos executada pela associação correspondente à área.
+          </p>
+
+          <!-- Filtros de Categorias de Especialidades -->
+          <div class="flex flex-wrap gap-1.5 pt-2">
+            <button onclick="filterSpecs('todas')" class="spec-filter-btn active bg-brand-600 text-white text-xs font-semibold px-3 py-1.5 rounded-lg border border-brand-500 transition-all">Todas (16)</button>
+            <button onclick="filterSpecs('hospitalar')" class="spec-filter-btn bg-white text-slate-600 text-xs font-semibold px-3 py-1.5 rounded-lg border border-slate-200 transition-all">Hospitalar / Crítico</button>
+            <button onclick="filterSpecs('clinico')" class="spec-filter-btn bg-white text-slate-600 text-xs font-semibold px-3 py-1.5 rounded-lg border border-slate-200 transition-all">Clínico Geral</button>
+            <button onclick="filterSpecs('esportivo')" class="spec-filter-btn bg-white text-slate-600 text-xs font-semibold px-3 py-1.5 rounded-lg border border-slate-200 transition-all">Preventivo / Esportivo</button>
+          </div>
+        </div>
+
+        <!-- Grid de Especialidades -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="specialties-grid">
+          
+          <!-- 1. Acupuntura -->
+          <div class="spec-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3" data-cat="clinico">
+            <div class="flex justify-between items-center">
+              <span class="bg-slate-100 text-slate-700 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Clínico</span>
+              <i class="ti ti-needle text-brand-600 text-xl"></i>
+            </div>
+            <h4 class="font-bold text-slate-950 text-base">1. Acupuntura / MTC</h4>
+            <p class="text-slate-600 text-xs leading-relaxed">
+              Aplicação de agulhas e termoterapia de ventosaterapia em pontos cutâneos com o objetivo de homeostase metabólica e bloqueio de dores neurogênicas crônicas.
+            </p>
+          </div>
+
+          <!-- 2. Fisioterapia Aquática -->
+          <div class="spec-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3" data-cat="clinico">
+            <div class="flex justify-between items-center">
+              <span class="bg-slate-100 text-slate-700 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Clínico</span>
+              <i class="ti ti-droplet-filled-2 text-brand-600 text-xl"></i>
+            </div>
+            <h4 class="font-bold text-slate-950 text-base">2. Fisioterapia Aquática</h4>
+            <p class="text-slate-600 text-xs leading-relaxed">
+              Atuação clínica no ambiente da piscina adaptada sob a temperatura ideal de 32 a 34ºC. Aproveita os efeitos do empuxo e do calor corporal para reabilitação osteoarticular.
+            </p>
+          </div>
+
+          <!-- 3. Cardiovascular -->
+          <div class="spec-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3" data-cat="hospitalar">
+            <div class="flex justify-between items-center">
+              <span class="bg-brand-50 text-brand-800 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Hospitalar</span>
+              <i class="ti ti-heart-rate-monitor text-brand-600 text-xl"></i>
+            </div>
+            <h4 class="font-bold text-slate-950 text-base">3. Cardiovascular</h4>
+            <p class="text-slate-600 text-xs leading-relaxed">
+              Tratamento que previne complicações de eventos de infarto do miocárdio, hipertensão resistente e no pós-operatório cirúrgico cardíaco complexo por meio de exercícios cardiovasculares monitorizados.
+            </p>
+          </div>
+
+          <!-- 4. Dermatofuncional -->
+          <div class="spec-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3" data-cat="clinico">
+            <div class="flex justify-between items-center">
+              <span class="bg-slate-100 text-slate-700 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Clínico</span>
+              <i class="ti ti-sparkles text-brand-600 text-xl"></i>
+            </div>
+            <h4 class="font-bold text-slate-950 text-base">4. Dermatofuncional</h4>
+            <p class="text-slate-600 text-xs leading-relaxed">
+              Ramo focado nas disfunções do tecido epitelial e tegumentar, tratando portadores de queimaduras complexas, cicatrizes com aderência e atuando no pós-operatório de cirurgia plástica.
+            </p>
+          </div>
+
+          <!-- 5. Trabalho -->
+          <div class="spec-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3" data-cat="esportivo">
+            <div class="flex justify-between items-center">
+              <span class="bg-emerald-50 text-emerald-800 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Preventivo</span>
+              <i class="ti ti-tools text-brand-600 text-xl"></i>
+            </div>
+            <h4 class="font-bold text-slate-950 text-base">5. Fisioterapia do Trabalho</h4>
+            <p class="text-slate-600 text-xs leading-relaxed">
+              Abordagem que desenvolve vistorias ergonômicas no trabalho, ginástica laboral e ações preventivas de LER/DORT em fábricas, hospitais ou empresas administrativas de grande porte.
+            </p>
+          </div>
+
+          <!-- 6. Gerontologia -->
+          <div class="spec-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3" data-cat="clinico">
+            <div class="flex justify-between items-center">
+              <span class="bg-slate-100 text-slate-700 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Clínico</span>
+              <i class="ti ti-accessible-off text-brand-600 text-xl"></i>
+            </div>
+            <h4 class="font-bold text-slate-950 text-base">6. Gerontologia</h4>
+            <p class="text-slate-600 text-xs leading-relaxed">
+              Foco no manejo preventivo do idoso frágil, atuando na reabilitação vestibular de labirintite, no treinamento motor de equilíbrio para prevenção de fratura de colo do fêmur por quedas.
+            </p>
+          </div>
+
+          <!-- 7. Oncologia -->
+          <div class="spec-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3" data-cat="hospitalar">
+            <div class="flex justify-between items-center">
+              <span class="bg-brand-50 text-brand-800 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Hospitalar</span>
+              <i class="ti ti-ribbon text-brand-600 text-xl"></i>
+            </div>
+            <h4 class="font-bold text-slate-950 text-base">7. Oncologia</h4>
+            <p class="text-slate-600 text-xs leading-relaxed">
+              Tratamento voltado às sequelas provocadas pela quimioterapia e cirurgias de remoção de tumores. Destaque para a drenagem de linfedema de membro superior pós-mastectomia de mama.
+            </p>
+          </div>
+
+          <!-- 8. Reumatologia -->
+          <div class="spec-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3" data-cat="clinico">
+            <div class="flex justify-between items-center">
+              <span class="bg-slate-100 text-slate-700 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Clínico</span>
+              <span class="bg-indigo-600 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded uppercase font-sans">Recente (2022)</span>
+            </div>
+            <h4 class="font-bold text-slate-950 text-base">8. Reumatologia</h4>
+            <p class="text-slate-600 text-xs leading-relaxed">
+              A mais nova especialidade reconhecida em caráter pleno. Trata os distúrbios de doenças autoimunes crônicas como artrite reumatoide, gota úrica crônica, lúpus sistêmico e espondilite.
+            </p>
+          </div>
+
+          <!-- 9. Saúde da Mulher -->
+          <div class="spec-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3" data-cat="clinico">
+            <div class="flex justify-between items-center">
+              <span class="bg-slate-100 text-slate-700 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Clínico</span>
+              <i class="ti ti-baby-carriage text-brand-600 text-xl"></i>
+            </div>
+            <h4 class="font-bold text-slate-950 text-base">9. Saúde da Mulher</h4>
+            <p class="text-slate-600 text-xs leading-relaxed">
+              Intervenção em disfunções do soalho pélvico (incontinência urinária de esforço, prolapso de útero e disfunções sexuais dolorosas) e reabilitação na preparação de parto humanizado.
+            </p>
+          </div>
+
+          <!-- 10. Terapia Intensiva Adulto -->
+          <div class="spec-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3" data-cat="hospitalar">
+            <div class="flex justify-between items-center">
+              <span class="bg-brand-50 text-brand-800 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Hospitalar</span>
+              <i class="ti ti-building-hospital text-brand-600 text-xl"></i>
+            </div>
+            <h4 class="font-bold text-slate-950 text-base">10. Terapia Intensiva Adulto (UTI)</h4>
+            <p class="text-slate-600 text-xs leading-relaxed">
+              Monitorização do paciente crítico em ventilação invasiva, manejo das vias aéreas artificiais e controle rigoroso de pneumonia associada ao ventilador em leito de alta complexidade.
+            </p>
+          </div>
+
+          <!-- 11. UTI Pediátrica e Neonatal -->
+          <div class="spec-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3" data-cat="hospitalar">
+            <div class="flex justify-between items-center">
+              <span class="bg-brand-50 text-brand-800 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Hospitalar</span>
+              <i class="ti ti-baby-bottle text-brand-600 text-xl"></i>
+            </div>
+            <h4 class="font-bold text-slate-950 text-base">11. Terapia Intensiva Neonatal</h4>
+            <p class="text-slate-600 text-xs leading-relaxed">
+              Ação hiperespecializada em incubadoras de recém-nascidos de extremo baixo peso corporal, com desobstrução pulmonar leve e estímulo neuropsicomotor ao desenvolvimento postural.
+            </p>
+          </div>
+
+          <!-- 12. Esportiva -->
+          <div class="spec-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3" data-cat="esportivo">
+            <div class="flex justify-between items-center">
+              <span class="bg-emerald-50 text-emerald-800 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Preventivo</span>
+              <i class="ti ti-trophy text-brand-600 text-xl"></i>
+            </div>
+            <h4 class="font-bold text-slate-950 text-base">12. Esportiva</h4>
+            <p class="text-slate-600 text-xs leading-relaxed">
+              Prevenção de lesões musculares em atletas de elite, recuperação dinâmica pós-jogo (Recovery com Taping e massagem) e reabilitação pós-estiramento para retorno seguro aos campos.
+            </p>
+          </div>
+
+          <!-- 13. Neurofuncional -->
+          <div class="spec-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3" data-cat="clinico">
+            <div class="flex justify-between items-center">
+              <span class="bg-slate-100 text-slate-700 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Clínico</span>
+              <i class="ti ti-brain text-brand-600 text-xl"></i>
+            </div>
+            <h4 class="font-bold text-slate-950 text-base">13. Neurofuncional</h4>
+            <p class="text-slate-600 text-xs leading-relaxed">
+              Tratamento de sequelas do sistema nervoso central, como hemiplegia de AVC, paraplegia decorrente de lesão medular por trauma automobilístico, esclerose e Doença de Parkinson.
+            </p>
+          </div>
+
+          <!-- 14. Respiratória -->
+          <div class="spec-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3" data-cat="hospitalar">
+            <div class="flex justify-between items-center">
+              <span class="bg-brand-50 text-brand-800 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Hospitalar</span>
+              <i class="ti ti-lungs text-brand-600 text-xl"></i>
+            </div>
+            <h4 class="font-bold text-slate-950 text-base">14. Respiratória</h4>
+            <p class="text-slate-600 text-xs leading-relaxed">
+              Auxilia no restabelecimento do fluxo gasoso e oxigenação tecidual em portadores de DPOC (Enfisema Pulmonar), Asma Grave e Fibrose Cística com manobras desobstrutivas manuais.
+            </p>
+          </div>
+
+          <!-- 15. Traumato-Ortopédica -->
+          <div class="spec-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3" data-cat="clinico">
+            <div class="flex justify-between items-center">
+              <span class="bg-slate-100 text-slate-700 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Clínico</span>
+              <i class="ti ti-bone text-brand-600 text-xl"></i>
+            </div>
+            <h4 class="font-bold text-slate-950 text-base">15. Traumato-Ortopédica</h4>
+            <p class="text-slate-600 text-xs leading-relaxed">
+              A especialidade campeã de registros do CREFITO. Atua no reestabelecimento da amplitude articular após fraturas ósseas, tratamento de tendinopatias crônicas e pós-cirúrgicos de ligamentos.
+            </p>
+          </div>
+
+          <!-- 16. Osteopatia e Quiropraxia -->
+          <div class="spec-card bg-white rounded-2xl p-5 border border-slate-200 shadow-sm space-y-3" data-cat="clinico">
+            <div class="flex justify-between items-center">
+              <span class="bg-slate-100 text-slate-700 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded">Clínico</span>
+              <i class="ti ti-spine text-brand-600 text-xl"></i>
+            </div>
+            <h4 class="font-bold text-slate-950 text-base">16. Osteopatia e Quiropraxia</h4>
+            <p class="text-slate-600 text-xs leading-relaxed">
+              Terapias puramente manuais focadas em ajustes mecânicos de alta velocidade e baixa amplitude no sistema articular da coluna para alívio imediato de restrições neurofisiológicas.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- MODULO: SIMULADO INTERATIVO -->
+      <section id="tab-simulado" class="tab-content hidden space-y-6">
+        
+        <!-- Cartão Informativo de Progresso -->
+        <div class="bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4">
+          <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div>
+              <span class="text-xs font-bold text-brand-600 uppercase tracking-wider block mb-1">Simulação de Exame</span>
+              <h2 class="text-2xl font-extrabold text-slate-950 tracking-tight">Questões Comentadas Integradas</h2>
+            </div>
+            <button onclick="resetQuiz()" class="bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold px-4 py-2.5 rounded-xl transition-all flex items-center gap-1.5 self-stretch md:self-auto justify-center">
+              <i class="ti ti-refresh text-base"></i> Reiniciar Simulado
+            </button>
+          </div>
+          <p class="text-slate-600 text-sm leading-relaxed">
+            As questões abaixo foram construídas com base no conteúdo didático oficial de Fisioterapia da UNINASSAU Cacoal. Elas abordam marcos legais, marcos éticos, aspetos de reabilitação e história global.
+          </p>
+        </div>
+
+        <!-- Questão 1 -->
+        <div class="quiz-item-box bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4" data-qnum="1">
+          <div class="flex items-center justify-between">
+            <span class="bg-slate-100 text-slate-700 text-xs font-bold px-3 py-1 rounded-full font-mono">Questão 1</span>
+            <span class="quiz-status-pill hidden text-xs font-semibold px-3 py-1 rounded-full"></span>
+          </div>
+          <p class="text-slate-900 text-sm font-semibold leading-relaxed">
+            1. O Decreto-Lei nº 938/1969 é considerado o pilar jurídico da fisioterapia no Brasil. Qual dispositivo define que a execução de métodos fisioterápicos para restaurar, desenvolver e conservar a capacidade física é atividade privativa do fisioterapeuta?
+          </p>
+          <div class="space-y-2">
+            <button onclick="checkAnswer(this, 'wrong', 1)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              A. Art. 2º, que reconhece o fisioterapeuta como profissional de nível superior
+            </button>
+            <button onclick="checkAnswer(this, 'correct', 1)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              B. Art. 3º, que garante as atividades privativas do fisioterapeuta
+            </button>
+            <button onclick="checkAnswer(this, 'wrong', 1)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              C. Art. 5º, que concede atribuições de direção e magistério
+            </button>
+            <button onclick="checkAnswer(this, 'wrong', 1)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              D. A Lei nº 6.316/1975, que criou o COFFITO/CREFITO
+            </button>
+          </div>
+          <div class="quiz-feedback-container hidden p-4 rounded-xl text-xs font-medium"></div>
+        </div>
+
+        <!-- Questão 2 -->
+        <div class="quiz-item-box bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4" data-qnum="2">
+          <div class="flex items-center justify-between">
+            <span class="bg-slate-100 text-slate-700 text-xs font-bold px-3 py-1 rounded-full font-mono">Questão 2</span>
+            <span class="quiz-status-pill hidden text-xs font-semibold px-3 py-1 rounded-full"></span>
+          </div>
+          <p class="text-slate-900 text-sm font-semibold leading-relaxed">
+            2. O Parecer CFE nº 388/1963 é considerado um "erro histórico" da profissão porque:
+          </p>
+          <div class="space-y-2">
+            <button onclick="checkAnswer(this, 'wrong', 2)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              A. Extinguiu o primeiro curso de fisioterapia criado em 1951
+            </button>
+            <button onclick="checkAnswer(this, 'wrong', 2)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              B. Proibiu a criação de conselhos regionais de fisioterapia
+            </button>
+            <button onclick="checkAnswer(this, 'correct', 2)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              C. Classificou o fisioterapeuta como "auxiliar médico", retirando sua autonomia clínica
+            </button>
+            <button onclick="checkAnswer(this, 'wrong', 2)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              D. Limitou a atuação do fisioterapeuta apenas à reabilitação hospitalar
+            </button>
+          </div>
+          <div class="quiz-feedback-container hidden p-4 rounded-xl text-xs font-medium"></div>
+        </div>
+
+        <!-- Questão 3 -->
+        <div class="quiz-item-box bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4" data-qnum="3">
+          <div class="flex items-center justify-between">
+            <span class="bg-slate-100 text-slate-700 text-xs font-bold px-3 py-1 rounded-full font-mono">Questão 3</span>
+            <span class="quiz-status-pill hidden text-xs font-semibold px-3 py-1 rounded-full"></span>
+          </div>
+          <p class="text-slate-900 text-sm font-semibold leading-relaxed">
+            3. Pehr Henrik Ling é reconhecido como "pai da fisioterapia moderna" porque:
+          </p>
+          <div class="space-y-2">
+            <button onclick="checkAnswer(this, 'wrong', 3)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              A. Fundou a Chartered Society no Reino Unido em 1894
+            </button>
+            <button onclick="checkAnswer(this, 'wrong', 3)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              B. Publicou a obra De Arte Gymnastica em 1569 sobre exercício individualizado
+            </button>
+            <button onclick="checkAnswer(this, 'correct', 3)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              C. Criou a ginástica sueca em 1813, sistematizando métodos de massagem e exercício terapêutico
+            </button>
+            <button onclick="checkAnswer(this, 'wrong', 3)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              D. Desenvolveu o Kenny Method para reabilitação de pacientes com poliomielite
+            </button>
+          </div>
+          <div class="quiz-feedback-container hidden p-4 rounded-xl text-xs font-medium"></div>
+        </div>
+
+        <!-- Questão 4 -->
+        <div class="quiz-item-box bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4" data-qnum="4">
+          <div class="flex items-center justify-between">
+            <span class="bg-slate-100 text-slate-700 text-xs font-bold px-3 py-1 rounded-full font-mono">Questão 4</span>
+            <span class="quiz-status-pill hidden text-xs font-semibold px-3 py-1 rounded-full"></span>
+          </div>
+          <p class="text-slate-900 text-sm font-semibold leading-relaxed">
+            4. Um fisioterapeuta compartilha em suas redes sociais fotos comparativas de um paciente antes e após o tratamento, após obter autorização por escrito do paciente. Do ponto de vista ético, essa conduta é:
+          </p>
+          <div class="space-y-2">
+            <button onclick="checkAnswer(this, 'wrong', 4)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              A. Permitida, pois o paciente autorizou expressamente por escrito
+            </button>
+            <button onclick="checkAnswer(this, 'wrong', 4)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              B. Permitida, desde que o rosto do paciente esteja ocultado
+            </button>
+            <button onclick="checkAnswer(this, 'correct', 4)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              C. Proibida, pois a Resolução nº 519/2020 veda esse tipo de autopromoção mesmo com autorização
+            </button>
+            <button onclick="checkAnswer(this, 'wrong', 4)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              D. Permitida apenas se publicada em plataformas exclusivamente profissionais
+            </button>
+          </div>
+          <div class="quiz-feedback-container hidden p-4 rounded-xl text-xs font-medium"></div>
+        </div>
+
+        <!-- Questão 5 -->
+        <div class="quiz-item-box bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4" data-qnum="5">
+          <div class="flex items-center justify-between">
+            <span class="bg-slate-100 text-slate-700 text-xs font-bold px-3 py-1 rounded-full font-mono">Questão 5</span>
+            <span class="quiz-status-pill hidden text-xs font-semibold px-3 py-1 rounded-full"></span>
+          </div>
+          <p class="text-slate-900 text-sm font-semibold leading-relaxed">
+            5. Qual das alternativas apresenta corretamente uma atividade INTERprofissional (compartilhada) da fisioterapia, e não privativa?
+          </p>
+          <div class="space-y-2">
+            <button onclick="checkAnswer(this, 'wrong', 5)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              A. Concessão da alta fisioterapêutica ao paciente
+            </button>
+            <button onclick="checkAnswer(this, 'wrong', 5)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              B. Emissão de laudo cinético-funcional para perícia
+            </button>
+            <button onclick="checkAnswer(this, 'correct', 5)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              C. Prática da acupuntura, compartilhada com médicos, enfermeiros e terapeutas ocupacionais
+            </button>
+            <button onclick="checkAnswer(this, 'wrong', 5)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              D. Diagnóstico cinético-funcional após avaliação fisioterapêutica
+            </button>
+          </div>
+          <div class="quiz-feedback-container hidden p-4 rounded-xl text-xs font-medium"></div>
+        </div>
+
+        <!-- Questão 6 -->
+        <div class="quiz-item-box bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4" data-qnum="6">
+          <div class="flex items-center justify-between">
+            <span class="bg-slate-100 text-slate-700 text-xs font-bold px-3 py-1 rounded-full font-mono">Questão 6</span>
+            <span class="quiz-status-pill hidden text-xs font-semibold px-3 py-1 rounded-full"></span>
+          </div>
+          <p class="text-slate-900 text-sm font-semibold leading-relaxed">
+            6. A Resolução COFFITO nº 415/2012 determina que o prazo mínimo de guarda do prontuário fisioterapêutico é de:
+          </p>
+          <div class="space-y-2">
+            <button onclick="checkAnswer(this, 'wrong', 6)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              A. 5 anos após o término do tratamento
+            </button>
+            <button onclick="checkAnswer(this, 'wrong', 6)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              B. 10 anos após o término do tratamento
+            </button>
+            <button onclick="checkAnswer(this, 'correct', 6)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              C. 20 anos após o término do tratamento
+            </button>
+            <button onclick="checkAnswer(this, 'wrong', 6)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              D. Indefinidamente, enquanto o paciente estiver vivo
+            </button>
+          </div>
+          <div class="quiz-feedback-container hidden p-4 rounded-xl text-xs font-medium"></div>
+        </div>
+
+        <!-- Questão 7 -->
+        <div class="quiz-item-box bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4" data-qnum="7">
+          <div class="flex items-center justify-between">
+            <span class="bg-slate-100 text-slate-700 text-xs font-bold px-3 py-1 rounded-full font-mono">Questão 7</span>
+            <span class="quiz-status-pill hidden text-xs font-semibold px-3 py-1 rounded-full"></span>
+          </div>
+          <p class="text-slate-900 text-sm font-semibold leading-relaxed">
+            7. Qual modelo de trabalho em equipe é considerado o ideal moderno na saúde, caracterizado por rounds de discussão, metas terapêuticas compartilhadas e diálogo ativo entre profissionais?
+          </p>
+          <div class="space-y-2">
+            <button onclick="checkAnswer(this, 'wrong', 7)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              A. Multidisciplinar, pois cada profissional mantém sua especialidade bem delimitada
+            </button>
+            <button onclick="checkAnswer(this, 'correct', 7)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              B. Interdisciplinar, pois promove integração real entre as áreas em prol do paciente
+            </button>
+            <button onclick="checkAnswer(this, 'wrong', 7)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              C. Transdisciplinar, pois dilui completamente as fronteiras entre as profissões
+            </button>
+            <button onclick="checkAnswer(this, 'wrong', 7)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              D. Unidisciplinar, pois garante maior especialização técnica individual
+            </button>
+          </div>
+          <div class="quiz-feedback-container hidden p-4 rounded-xl text-xs font-medium"></div>
+        </div>
+
+        <!-- Questão 8 -->
+        <div class="quiz-item-box bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4" data-qnum="8">
+          <div class="flex items-center justify-between">
+            <span class="bg-slate-100 text-slate-700 text-xs font-bold px-3 py-1 rounded-full font-mono">Questão 8</span>
+            <span class="quiz-status-pill hidden text-xs font-semibold px-3 py-1 rounded-full"></span>
+          </div>
+          <p class="text-slate-900 text-sm font-semibold leading-relaxed">
+            8. A Fisioterapia em Reumatologia é reconhecida pelo COFFITO como especialidade desde:
+          </p>
+          <div class="space-y-2">
+            <button onclick="checkAnswer(this, 'wrong', 8)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              A. 1987, junto com a Resolução COFFITO-80
+            </button>
+            <button onclick="checkAnswer(this, 'wrong', 8)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              B. 2013, junto com o atual Código de Ética
+            </button>
+            <button onclick="checkAnswer(this, 'correct', 8)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              C. 2022, sendo a especialidade mais recentemente reconhecida
+            </button>
+            <button onclick="checkAnswer(this, 'wrong', 8)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              D. 2019, como parte das novas especialidades da área hospitalar
+            </button>
+          </div>
+          <div class="quiz-feedback-container hidden p-4 rounded-xl text-xs font-medium"></div>
+        </div>
+
+        <!-- Questão 9 -->
+        <div class="quiz-item-box bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4" data-qnum="9">
+          <div class="flex items-center justify-between">
+            <span class="bg-slate-100 text-slate-700 text-xs font-bold px-3 py-1 rounded-full font-mono">Questão 9</span>
+            <span class="quiz-status-pill hidden text-xs font-semibold px-3 py-1 rounded-full"></span>
+          </div>
+          <p class="text-slate-900 text-sm font-semibold leading-relaxed">
+            9. Hipócrates formulou o princípio fundamental "a função estimula o órgão". Qual recurso fisioterapêutico moderno melhor traduz esse princípio em prática clínica?
+          </p>
+          <div class="space-y-2">
+            <button onclick="checkAnswer(this, 'wrong', 9)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              A. Crioterapia, pela aplicação de frio para controle da inflamação
+            </button>
+            <button onclick="checkAnswer(this, 'wrong', 9)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              B. Eletroterapia, pelo uso de correntes para estimulação muscular passiva
+            </button>
+            <button onclick="checkAnswer(this, 'correct', 9)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              C. Cinesioterapia, pela terapia pelo movimento como estímulo funcional
+            </button>
+            <button onclick="checkAnswer(this, 'wrong', 9)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              D. Termoterapia, pelo uso do calor para preparação do tecido muscular
+            </button>
+          </div>
+          <div class="quiz-feedback-container hidden p-4 rounded-xl text-xs font-medium"></div>
+        </div>
+
+        <!-- Questão 10 -->
+        <div class="quiz-item-box bg-white rounded-3xl p-6 border border-slate-200 shadow-sm space-y-4" data-qnum="10">
+          <div class="flex items-center justify-between">
+            <span class="bg-slate-100 text-slate-700 text-xs font-bold px-3 py-1 rounded-full font-mono">Questão 10</span>
+            <span class="quiz-status-pill hidden text-xs font-semibold px-3 py-1 rounded-full"></span>
+          </div>
+          <p class="text-slate-900 text-sm font-semibold leading-relaxed">
+            10. A jornada máxima de trabalho do fisioterapeuta, fixada pela Lei Federal nº 8.856/1994, é de:
+          </p>
+          <div class="space-y-2">
+            <button onclick="checkAnswer(this, 'wrong', 10)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              A. 20 horas semanais, como profissional de saúde de contato direto
+            </button>
+            <button onclick="checkAnswer(this, 'wrong', 10)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              B. 44 horas semanais, conforme a Consolidação das Leis do Trabalho (CLT)
+            </button>
+            <button onclick="checkAnswer(this, 'correct', 10)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              C. 30 horas semanais, para fisioterapeutas e terapeutas ocupacionais
+            </button>
+            <button onclick="checkAnswer(this, 'wrong', 10)" class="quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all">
+              D. 36 horas semanais, equiparada à jornada dos profissionais de enfermagem
+            </button>
+          </div>
+          <div class="quiz-feedback-container hidden p-4 rounded-xl text-xs font-medium"></div>
+        </div>
+
+        <!-- Painel de Pontuação Global -->
+        <div id="quiz-final-scorebox" class="hidden bg-white border border-slate-200 rounded-3xl p-6 shadow-sm text-center space-y-3">
+          <span class="text-xs font-extrabold text-brand-600 uppercase tracking-widest block">Simulação Finalizada</span>
+          <div class="text-4xl md:text-5xl font-black text-slate-900" id="quiz-score-display">0 / 10</div>
+          <p class="text-slate-600 text-sm font-medium" id="quiz-score-message">Finalize todas as questões para mensurar seu percentual de retenção.</p>
+          <button onclick="resetQuiz()" class="bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs py-2.5 px-4 rounded-xl shadow-sm transition-all inline-flex items-center gap-1.5">
+            Refazer Simulado <i class="ti ti-rotate"></i>
+          </button>
+        </div>
+
+      </section>
+
     </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-droplet" aria-hidden="true"></i> 2. Fisioterapia aquática</div>
-      <p>Uso das propriedades físicas e térmicas da água aquecida (piscina) para tratamento osteomioarticular, como fibromialgia. Difere da <span class="badge ba">hidroginástica</span> — que é atividade física conduzida por educadores físicos.</p>
+  </main>
+
+  <!-- Rodapé Estilizado -->
+  <footer class="bg-slate-900 text-slate-400 text-xs py-8 border-t border-slate-800 mt-12">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+      <div class="space-y-1 text-center md:text-left">
+        <p class="font-bold text-white text-sm">Fisioterapia · UNINASSAU Cacoal</p>
+        <p class="leading-relaxed">Construído em conformidade com as diretrizes curriculares do COFFITO para o primeiro período letivo.</p>
+      </div>
+      <div class="text-center md:text-right">
+        <p>© 2026 Portal de Estudos Integrados. Todos os direitos reservados.</p>
+        <p class="text-slate-500 text-[11px] mt-1">Soberania e Autonomia na Reabilitação do Movimento.</p>
+      </div>
     </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-heart-rate-monitor" aria-hidden="true"></i> 3. Cardiovascular</div>
-      <p>Reabilitação cardíaca supervisionada (fases I: hospitalar; II: ambulatorial; III: manutenção) para pacientes pós-IAM ou pós-cirurgia cardíaca. Envolve monitorização de ECG e controle de frequência cardíaca.</p>
-    </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-sparkles" aria-hidden="true"></i> 4. Dermatofuncional</div>
-      <p>Distúrbios físico-estéticos-funcionais do sistema tegumentar: queimados, pós-operatório de cirurgia plástica, cicatrizes, lipodistrofia. Usa radiofrequência, criolipólise e drenagem linfática.</p>
-    </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-tools" aria-hidden="true"></i> 5. Fisioterapia do trabalho</div>
-      <p>Atuação em empresas com foco em ergonomia, pausas compensatórias e prevenção de LER/DORT. Alta demanda no agronegócio e setor industrial — muito relevante para a realidade de Cacoal/RO.</p>
-    </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-accessible" aria-hidden="true"></i> 6. Gerontologia</div>
-      <p>Atenção e cuidado ao idoso: prevenção de quedas, treino de marcha, manutenção da capacidade funcional. Especialidade em forte crescimento pelo envelhecimento populacional brasileiro.</p>
-    </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-ribbon" aria-hidden="true"></i> 7. Oncologia</div>
-      <p>Preservação cinético-funcional e manejo de complicações do tratamento de câncer. Exemplo clássico: drenagem linfática manual no linfedema pós-mastectomia.</p>
-    </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-virus" aria-hidden="true"></i> 8. Reumatologia <span class="badge bp">mais recente</span></div>
-      <p>Especialidade mais recente do COFFITO, reconhecida em 2022. Manejo de patologias autoimunes e inflamatórias crônicas sistêmicas como artrite reumatoide, lúpus e espondilite anquilosante.</p>
-    </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-rosette" aria-hidden="true"></i> 9. Saúde da mulher</div>
-      <p>Singularidades femininas: gestação, parto humanizado, puerpério e reabilitação pélvica de incontinência urinária, prolapso de órgãos pélvicos e disfunções sexuais. Mercado em crescimento acelerado.</p>
-    </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-building-hospital" aria-hidden="true"></i> 10. Terapia intensiva adulto (UTI)</div>
-      <p>Atuação em leito de UTI: ventilação mecânica, higiene brônquica, mobilização precoce, desmame ventilatório. Alta demanda impulsionada pela pandemia de COVID-19.</p>
-    </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-baby-carriage" aria-hidden="true"></i> 11. Terapia intensiva neonatal e pediátrica</div>
-      <p>Cuidados respiratórios e motores em incubadoras e UTIs neonatais. Envolve técnicas adaptadas para recém-nascidos prematuros e crianças criticamente enfermas.</p>
-    </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-trophy" aria-hidden="true"></i> 12. Esportiva</div>
-      <p>Prevenção de lesões, reabilitação e retorno ao esporte (return to play) em clubes e centros de treinamento. Inclui taping funcional e avaliação biomecânica do gesto esportivo.</p>
-    </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-brain" aria-hidden="true"></i> 13. Neurofuncional</div>
-      <p>Reeducação motora baseada na neuroplasticidade do sistema nervoso: sequelas de AVC, TCE, lesão medular, Parkinson, Esclerose Múltipla. A plasticidade cerebral é o fundamento científico central.</p>
-    </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-lungs" aria-hidden="true"></i> 14. Respiratória</div>
-      <p>Otimização do transporte de oxigênio e higiene brônquica em patologias pulmonares: DPOC, asma, bronquiectasias. Técnicas: manobras desobstrutivas, aspiração, incentivadores respiratórios.</p>
-    </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-bone" aria-hidden="true"></i> 15. Traumato-ortopédica</div>
-      <p>Especialidade mais procurada. Reabilitação de lesões do sistema musculoesquelético: fraturas, entorses, pós-op de LCA, lombalgias, tendinites, artroses. Inclui RPG e terapia manual.</p>
-    </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-spine" aria-hidden="true"></i> 16. Osteopatia e quiropraxia</div>
-      <p>Diagnóstico e terapêutica manual focados no ajuste e manipulação de estruturas anatômicas e coluna vertebral para liberação do fluxo neurofisiológico. Abordagem global do sistema musculoesquelético.</p>
-    </div>
-  </div>
-</div>
+  </footer>
 
-<!-- DIA A DIA -->
-<div id="cot" class="section">
-  <h2 class="sec">Vida acadêmica no 1º período</h2>
-  <div class="grid2">
-    <div class="card">
-      <div class="card-title"><i class="ti ti-pencil" aria-hidden="true"></i> Estrutura da anamnese — praticar desde já</div>
-      <p><span class="badge bp">1</span> Identificação: nome, idade, profissão, lateralidade</p>
-      <p><span class="badge bp">2</span> Queixa principal (QP) — em poucas palavras, na voz do paciente</p>
-      <p><span class="badge bp">3</span> HMA: início, evolução, fatores de melhora/piora</p>
-      <p><span class="badge bp">4</span> Antecedentes pessoais e familiares</p>
-      <p><span class="badge bp">5</span> Condição socioeconômica e hábitos de vida</p>
-    </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-notes" aria-hidden="true"></i> Prontuário fisioterapêutico</div>
-      <p>Documento legal obrigatório para todo atendimento. Tudo que não está escrito, juridicamente não foi feito. Deve conter: anamnese, avaliação, diagnóstico cinético-funcional, plano, evoluções e alta.</p>
-      <p>Guarda legal: <span class="badge bc">20 anos</span> após término do tratamento (Res. COFFITO 415/2012).</p>
-    </div>
-  </div>
+  <!-- Scripts Funcionais de Controle de Abas e Interações -->
+  <script>
+    // Recuperação de notas salvas
+    document.addEventListener("DOMContentLoaded", () => {
+      const storedNotes = localStorage.getItem("uninassau_fisioterapia_notes");
+      if (storedNotes) {
+        document.getElementById("academic-notepad").value = storedNotes;
+      }
+      updateSimWave();
+    });
 
-  <div class="divider"></div>
-  <h2 class="sec">Mercado de trabalho em Rondônia</h2>
-  <div class="card">
-    <div class="card-title"><i class="ti ti-briefcase" aria-hidden="true"></i> Onde o fisioterapeuta atua em Cacoal e região</div>
-    <p><span class="badge bt">Hospitais e UPAs</span> Hospital Regional de Cacoal, UPA 24h — demanda por fisioterapia respiratória, neurológica e motora</p>
-    <p><span class="badge bt">NASF / eNASF / Atenção básica</span> Fisioterapia comunitária, visitas domiciliares, grupos de prevenção</p>
-    <p><span class="badge bt">Clínicas privadas</span> Ortopedia e estética são as especialidades com maior demanda no interior</p>
-    <p><span class="badge bt">Setor agroindustrial</span> Região de forte atividade rural e industrial — campo fértil para fisioterapia do trabalho (LER/DORT)</p>
-    <p><span class="badge bt">Esporte amador</span> Times locais de futsal, futebol e atletismo</p>
-    <p><span class="badge bt">Saúde do idoso</span> Demanda crescente por gerontologia com envelhecimento da população regional</p>
-  </div>
+    // Controle de Abas Dinâmico (SPA)
+    function switchTab(tabName) {
+      // Ocultar todas as seções
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.add('hidden');
+        tab.classList.remove('block');
+      });
 
-  <div class="divider"></div>
-  <h2 class="sec">Competências além da técnica</h2>
-  <div class="grid2">
-    <div class="card">
-      <div class="card-title"><i class="ti ti-message-circle" aria-hidden="true"></i> Comunicação terapêutica</div>
-      <p>O fisioterapeuta tem contato físico direto e prolongado com o paciente — às vezes por semanas. A aliança terapêutica é determinante para adesão ao tratamento e resultados clínicos. Desenvolva desde o 1º período: escuta ativa, linguagem acessível e comunicação não-verbal.</p>
-    </div>
-    <div class="card">
-      <div class="card-title"><i class="ti ti-eye" aria-hidden="true"></i> Raciocínio clínico</div>
-      <p>Antes de tocar o paciente, o fisioterapeuta já avalia: postura, padrão de marcha, expressão de dor, compensações musculares. Esse olhar clínico se desenvolve ao longo do curso, mas começa nas primeiras observações em laboratório.</p>
-    </div>
-  </div>
+      // Remover estado ativo dos botões
+      document.querySelectorAll('.nav-tab').forEach(btn => {
+        btn.classList.remove('active', 'bg-brand-50', 'text-brand-700', 'font-semibold', 'border', 'border-brand-100');
+        btn.classList.add('text-slate-600', 'hover:bg-slate-50', 'hover:text-slate-900');
+      });
 
-  <div class="divider"></div>
-  <h2 class="sec">Erros comuns no 1º período</h2>
-  <div class="danger"><p><strong>Confundir diagnóstico médico com fisioterapêutico</strong> — o médico diz o que a pessoa tem (patologia); você identifica o que ela não consegue fazer por causa disso (disfunção funcional).</p></div>
-  <div class="danger"><p><strong>Achar que encaminhamento médico é obrigatório</strong> — não é. O fisioterapeuta tem autonomia para atender qualquer paciente diretamente.</p></div>
-  <div class="danger"><p><strong>Confundir guarda do prontuário</strong> — são 20 anos (Res. 415/2012), não 5 anos.</p></div>
-  <div class="danger"><p><strong>Achar que fotos "Antes e Depois" são permitidas com autorização</strong> — são proibidas mesmo com consentimento do paciente para fins de autopromoção.</p></div>
-  <div class="warn"><p><strong>Estratégia para a prova:</strong> Refaça o Quiz Rápido do material da disciplina (Atividade 6) com foco em datas e leis. Revise o Caso Prático do Júri Simulado (Atividade 3) para fixar as infrações éticas com exemplos reais.</p></div>
-</div>
+      // Ativar seção escolhida
+      const targetTab = document.getElementById(`tab-${tabName}`);
+      if (targetTab) {
+        targetTab.classList.remove('hidden');
+        targetTab.classList.add('block');
+      }
 
-<!-- SIMULADO -->
-<div id="quiz" class="section">
-  <p style="font-size:14px;color:var(--color-text-secondary);margin-bottom:1.25rem;line-height:1.6">10 questões cobrindo todos os temas do material. Clique na alternativa correta — o feedback aparece imediatamente.</p>
+      // Ativar botão correspondente
+      const targetBtn = document.getElementById(`btn-${tabName}`);
+      if (targetBtn) {
+        targetBtn.classList.add('active', 'bg-brand-50', 'text-brand-700', 'font-semibold', 'border', 'border-brand-100');
+        targetBtn.classList.remove('text-slate-600', 'hover:bg-slate-50', 'hover:text-slate-900');
+      }
 
-  <div class="quiz-q" id="qq1">
-    <p class="qtext">1. O Decreto-Lei nº 938/1969 é considerado o pilar jurídico da fisioterapia no Brasil. Qual dispositivo define que a execução de métodos fisioterápicos para restaurar, desenvolver e conservar a capacidade física é atividade privativa do fisioterapeuta?</p>
-    <button class="qopt" onclick="ans(this,'wrong',1)">A. Art. 2º, que reconhece o fisioterapeuta como profissional de nível superior</button>
-    <button class="qopt" onclick="ans(this,'correct',1)">B. Art. 3º, que garante as atividades privativas do fisioterapeuta</button>
-    <button class="qopt" onclick="ans(this,'wrong',1)">C. Art. 5º, que concede atribuições de direção e magistério</button>
-    <button class="qopt" onclick="ans(this,'wrong',1)">D. A Lei nº 6.316/1975, que criou o COFFITO/CREFITO</button>
-    <div id="fb1" class="qfb"></div>
-  </div>
+      // Scroll para o topo suave
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-  <div class="quiz-q" id="qq2">
-    <p class="qtext">2. O Parecer CFE nº 388/1963 é considerado um "erro histórico" da profissão porque:</p>
-    <button class="qopt" onclick="ans(this,'wrong',2)">A. Extinguiu o primeiro curso de fisioterapia criado em 1951</button>
-    <button class="qopt" onclick="ans(this,'wrong',2)">B. Proibiu a criação de conselhos regionais de fisioterapia</button>
-    <button class="qopt" onclick="ans(this,'correct',2)">C. Classificou o fisioterapeuta como "auxiliar médico", retirando sua autonomia clínica</button>
-    <button class="qopt" onclick="ans(this,'wrong',2)">D. Limitou a atuação do fisioterapeuta apenas à reabilitação hospitalar</button>
-    <div id="fb2" class="qfb"></div>
-  </div>
+    // Estudo Ativo: Rotação 3D de Flashcards
+    function flipCard(cardContainer) {
+      const inner = cardContainer.querySelector('.flashcard-inner');
+      inner.classList.toggle('flashcard-flipped');
+    }
 
-  <div class="quiz-q" id="qq3">
-    <p class="qtext">3. Pehr Henrik Ling é reconhecido como "pai da fisioterapia moderna" porque:</p>
-    <button class="qopt" onclick="ans(this,'wrong',3)">A. Fundou a Chartered Society no Reino Unido em 1894</button>
-    <button class="qopt" onclick="ans(this,'wrong',3)">B. Publicou a obra De Arte Gymnastica em 1569 sobre exercício individualizado</button>
-    <button class="qopt" onclick="ans(this,'correct',3)">C. Criou a ginástica sueca em 1813, sistematizando métodos de massagem e exercício terapêutico</button>
-    <button class="qopt" onclick="ans(this,'wrong',3)">D. Desenvolveu o Kenny Method para reabilitação de pacientes com poliomielite</button>
-    <div id="fb3" class="qfb"></div>
-  </div>
+    // Salvamento Local de Anotações Acadêmicas
+    function saveNotes() {
+      const text = document.getElementById("academic-notepad").value;
+      localStorage.setItem("uninassau_fisioterapia_notes", text);
+    }
 
-  <div class="quiz-q" id="qq4">
-    <p class="qtext">4. Um fisioterapeuta compartilha em suas redes sociais fotos comparativas de um paciente antes e após o tratamento, após obter autorização por escrito do paciente. Do ponto de vista ético, essa conduta é:</p>
-    <button class="qopt" onclick="ans(this,'wrong',4)">A. Permitida, pois o paciente autorizou expressamente por escrito</button>
-    <button class="qopt" onclick="ans(this,'wrong',4)">B. Permitida, desde que o rosto do paciente esteja ocultado</button>
-    <button class="qopt" onclick="ans(this,'correct',4)">C. Proibida, pois a Resolução nº 519/2020 veda esse tipo de autopromoção mesmo com autorização</button>
-    <button class="qopt" onclick="ans(this,'wrong',4)">D. Permitida apenas se publicada em plataformas exclusivamente profissionais</button>
-    <div id="fb4" class="qfb"></div>
-  </div>
+    function clearNotes() {
+      document.getElementById("academic-notepad").value = "";
+      localStorage.removeItem("uninassau_fisioterapia_notes");
+    }
 
-  <div class="quiz-q" id="qq5">
-    <p class="qtext">5. Qual das alternativas apresenta corretamente uma atividade INTERprofissional (compartilhada) da fisioterapia, e não privativa?</p>
-    <button class="qopt" onclick="ans(this,'wrong',5)">A. Concessão da alta fisioterapêutica ao paciente</button>
-    <button class="qopt" onclick="ans(this,'wrong',5)">B. Emissão de laudo cinético-funcional para perícia</button>
-    <button class="qopt" onclick="ans(this,'correct',5)">C. Prática da acupuntura, compartilhada com médicos, enfermeiros e terapeutas ocupacionais</button>
-    <button class="qopt" onclick="ans(this,'wrong',5)">D. Diagnóstico cinético-funcional após avaliação fisioterapêutica</button>
-    <div id="fb5" class="qfb"></div>
-  </div>
+    function copyNotes() {
+      const text = document.getElementById("academic-notepad").value;
+      if (!text) return;
+      
+      // Cria elemento auxiliar para executar copy sem quebrar no iframe
+      const tempInput = document.createElement("textarea");
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand("copy");
+      document.body.removeChild(tempInput);
 
-  <div class="quiz-q" id="qq6">
-    <p class="qtext">6. A Resolução COFFITO nº 415/2012 determina que o prazo mínimo de guarda do prontuário fisioterapêutico é de:</p>
-    <button class="qopt" onclick="ans(this,'wrong',6)">A. 5 anos após o término do tratamento</button>
-    <button class="qopt" onclick="ans(this,'wrong',6)">B. 10 anos após o término do tratamento</button>
-    <button class="qopt" onclick="ans(this,'correct',6)">C. 20 anos após o término do tratamento</button>
-    <button class="qopt" onclick="ans(this,'wrong',6)">D. Indefinidamente, enquanto o paciente estiver vivo</button>
-    <div id="fb6" class="qfb"></div>
-  </div>
+      // Feedback temporário no botão
+      const btn = event.target;
+      const originalText = btn.textContent;
+      btn.textContent = "Copiado! ✓";
+      btn.classList.replace("bg-brand-600", "bg-emerald-600");
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.classList.replace("bg-emerald-600", "bg-brand-600");
+      }, 2000);
+    }
 
-  <div class="quiz-q" id="qq7">
-    <p class="qtext">7. Qual modelo de trabalho em equipe é considerado o ideal moderno na saúde, caracterizado por rounds de discussão, metas terapêuticas compartilhadas e diálogo ativo entre profissionais?</p>
-    <button class="qopt" onclick="ans(this,'wrong',7)">A. Multidisciplinar, pois cada profissional mantém sua especialidade bem delimitada</button>
-    <button class="qopt" onclick="ans(this,'correct',7)">B. Interdisciplinar, pois promove integração real entre as áreas em prol do paciente</button>
-    <button class="qopt" onclick="ans(this,'wrong',7)">C. Transdisciplinar, pois dilui completamente as fronteiras entre as profissões</button>
-    <button class="qopt" onclick="ans(this,'wrong',7)">D. Unidisciplinar, pois garante maior especialização técnica individual</button>
-    <div id="fb7" class="qfb"></div>
-  </div>
+    // Simulador Virtual de Eletroterapia
+    const presetParams = {
+      'analg-gate': { freq: 110, pulse: 80, exp: 'Frequências elevadas (80-120 Hz) e menor duração de pulso bloqueiam a transmissão do estímulo doloroso na medula espinhal antes de chegar ao cérebro. Alívio de dor imediato para pós-trauma agudo.' },
+      'analg-endo': { freq: 4, pulse: 250, exp: 'Frequências baixas (2-10 Hz) e larguras de pulso altas estimulam as fibras nervosas profundas para induzir a liberação sistêmica de endorfinas na corrente sanguínea. O efeito analgésico demora mais, mas dura horas.' },
+      'fes-strengthen': { freq: 50, pulse: 200, exp: 'Corrente FES opera tipicamente na faixa de 30-50 Hz com largura de pulso generosa para despolarizar a fibra motora, estimulando contrações musculares visíveis. Indicado para ganho de trofismo e força pós-gesso.' }
+    };
 
-  <div class="quiz-q" id="qq8">
-    <p class="qtext">8. A fisioterapia em reumatologia é reconhecida pelo COFFITO como especialidade desde:</p>
-    <button class="qopt" onclick="ans(this,'wrong',8)">A. 1987, junto com a Resolução COFFITO-80</button>
-    <button class="qopt" onclick="ans(this,'wrong',8)">B. 2013, junto com o atual Código de Ética</button>
-    <button class="qopt" onclick="ans(this,'correct',8)">C. 2022, sendo a especialidade mais recentemente reconhecida</button>
-    <button class="qopt" onclick="ans(this,'wrong',8)">D. 2019, como parte das novas especialidades da área hospitalar</button>
-    <div id="fb8" class="qfb"></div>
-  </div>
+    function setSimParams(presetKey) {
+      // Ajustar botões de preset
+      document.querySelectorAll('.sim-preset-btn').forEach(btn => {
+        btn.classList.remove('active', 'bg-brand-600', 'text-white', 'border-brand-500');
+        btn.classList.add('bg-white', 'hover:bg-slate-100', 'text-slate-700', 'border-slate-300');
+      });
+      event.target.classList.replace('bg-white', 'bg-brand-600');
+      event.target.classList.replace('text-slate-700', 'text-white');
+      event.target.classList.add('active');
 
-  <div class="quiz-q" id="qq9">
-    <p class="qtext">9. Hipócrates formulou o princípio fundamental "a função estimula o órgão". Qual recurso fisioterapêutico moderno melhor traduz esse princípio em prática clínica?</p>
-    <button class="qopt" onclick="ans(this,'wrong',9)">A. Crioterapia, pela aplicação de frio para controle da inflamação</button>
-    <button class="qopt" onclick="ans(this,'wrong',9)">B. Eletroterapia, pelo uso de correntes para estimulação muscular passiva</button>
-    <button class="qopt" onclick="ans(this,'correct',9)">C. Cinesioterapia, pela terapia pelo movimento como estímulo funcional</button>
-    <button class="qopt" onclick="ans(this,'wrong',9)">D. Termoterapia, pelo uso do calor para preparação do tecido muscular</button>
-    <div id="fb9" class="qfb"></div>
-  </div>
+      const data = presetParams[presetKey];
+      document.getElementById('sim-freq').value = data.freq;
+      document.getElementById('sim-pulse').value = data.pulse;
+      document.getElementById('sim-explanation').innerHTML = data.exp;
 
-  <div class="quiz-q" id="qq10">
-    <p class="qtext">10. A jornada máxima de trabalho do fisioterapeuta, fixada pela Lei Federal nº 8.856/1994, é de:</p>
-    <button class="qopt" onclick="ans(this,'wrong',10)">A. 20 horas semanais, como profissional de saúde de contato direto</button>
-    <button class="qopt" onclick="ans(this,'wrong',10)">B. 44 horas semanais, conforme a Consolidação das Leis do Trabalho (CLT)</button>
-    <button class="qopt" onclick="ans(this,'correct',10)">C. 30 horas semanais, para fisioterapeutas e terapeutas ocupacionais</button>
-    <button class="qopt" onclick="ans(this,'wrong',10)">D. 36 horas semanais, equiparada à jornada dos profissionais de enfermagem</button>
-    <div id="fb10" class="qfb"></div>
-  </div>
+      updateSimWave();
+    }
 
-  <div class="score-box" id="scorebox">
-    <div class="score-num" id="scorenum">0/10</div>
-    <div class="score-label" id="scorelabel">Finalize todas as questões para ver sua pontuação</div>
-    <button style="margin-top:12px" onclick="sendPrompt('Quero revisar os temas em que errei no simulado de fisioterapia')">Revisar temas com dificuldade ↗</button>
-  </div>
-</div>
+    function updateSimWave() {
+      const freq = parseInt(document.getElementById('sim-freq').value);
+      const pulse = parseInt(document.getElementById('sim-pulse').value);
 
-</div>
+      document.getElementById('sim-freq-val').textContent = `${freq} Hz`;
+      document.getElementById('sim-pulse-val').textContent = `${pulse} µs`;
 
-<script>
-var answered={};var scores=0;
-var fbs={
-  1:{correct:'Correto! O Art. 3º do Decreto 938/1969 é o artigo das atividades privativas. O Art. 2º define nível superior e o Art. 5º trata de magistério e direção.',wrong:'Incorreto. O Art. 3º é o que garante as atividades privativas (restaurar, desenvolver e conservar a capacidade física). O Art. 2º reconhece o nível superior e o Art. 5º trata de magistério e direção.'},
-  2:{correct:'Correto! O Parecer CFE 388/63 foi um retrocesso histórico ao classificar o fisioterapeuta como auxiliar médico, comprometendo sua autonomia clínica — erro revertido apenas com o Decreto 938/1969.',wrong:'Incorreto. O erro do Parecer CFE 388/63 foi classificar o fisioterapeuta como "auxiliar médico", subordinando-o ao médico e retirando sua autonomia clínica. O Decreto 938/1969 reverteu isso ao estabelecer nível superior e atividades privativas.'},
-  3:{correct:'Correto! Pehr Henrik Ling fundou o Instituto Real de Ginástica na Suécia em 1813 com a "ginástica sueca", sendo o pai da fisioterapia moderna. Mercurialis (De Arte Gymnastica, 1569) foi anterior e distinto.',wrong:'Incorreto. Pehr Henrik Ling é o pai da fisioterapia moderna pela criação da ginástica sueca em 1813. Mercurialis (1569) foi um precursor renascentista, e a Chartered Society (1894) é a primeira associação profissional — não Ling.'},
-  4:{correct:'Correto! A publicação de fotos "Antes e Depois" para autopromoção é vedada pelo Art. 10, V do Código de Ética, atualizado pela Resolução COFFITO nº 519/2020, independentemente da autorização do paciente.',wrong:'Incorreto. Mesmo com autorização expressa do paciente, a Resolução nº 519/2020 proíbe a publicação de fotos comparativas "Antes e Depois" para autopromoção. O consentimento não legítima a prática vedada.'},
-  5:{correct:'Correto! A acupuntura é atividade interprofissional compartilhada. Já a alta fisioterapêutica, o laudo cinético-funcional e o diagnóstico cinético-funcional são atividades privativas do fisioterapeuta (Res. COFFITO-8/1978).',wrong:'Incorreto. Alta fisioterapêutica, laudo e diagnóstico cinético-funcional são atividades privativas do fisioterapeuta. A acupuntura é interprofissional — compartilhada com médicos, enfermeiros, terapeutas ocupacionais e biomédicos.'},
-  6:{correct:'Correto! A Resolução COFFITO nº 415/2012 exige guarda mínima de 20 anos para prontuários físicos ou eletrônicos. Esse prazo é frequentemente confundido com 5 anos.',wrong:'Incorreto. O prazo correto pela Resolução COFFITO nº 415/2012 é de 20 anos após o término do tratamento — não 5 ou 10 anos. Essa é uma das pegadinhas mais comuns em prova.'},
-  7:{correct:'Correto! O modelo interdisciplinar é considerado o ideal moderno: profissionais dialogam ativamente, realizam rounds e compartilham metas. O multidisciplinar é fragmentado; o transdisciplinar dilui as fronteiras completamente.',wrong:'Incorreto. O modelo ideal moderno é o interdisciplinar — com rounds, metas compartilhadas e diálogo entre profissionais. O multidisciplinar é fragmentado (atuação paralela) e o transdisciplinar é o nível mais avançado de integração.'},
-  8:{correct:'Correto! A fisioterapia em reumatologia foi reconhecida pelo COFFITO em 2022, sendo a especialidade mais recente das 16 reconhecidas.',wrong:'Incorreto. A fisioterapia em reumatologia é a especialidade mais recentemente reconhecida pelo COFFITO, em 2022. As demais especialidades existiam muito antes disso.'},
-  9:{correct:'Correto! O princípio hipocrático "a função estimula o órgão" encontra sua expressão máxima na cinesioterapia — terapia pelo movimento. O movimento funcional é o que estimula e mantém os órgãos e sistemas.',wrong:'Incorreto. O princípio de Hipócrates "a função estimula o órgão" se traduz diretamente na cinesioterapia — terapia pelo movimento. Movimento é o objeto de estudo central da fisioterapia e o principal estimulador funcional.'},
-  10:{correct:'Correto! A Lei Federal nº 8.856/1994 fixou a jornada máxima em 30 horas semanais para fisioterapeutas e terapeutas ocupacionais.',wrong:'Incorreto. A Lei Federal nº 8.856/1994 estabeleceu jornada máxima de 30 horas semanais para fisioterapeutas e terapeutas ocupacionais — diferente da CLT (44h) e da enfermagem (36h).'}
-};
+      // Atualizar desenho do sinal do osciloscópio interativamente
+      const pathElement = document.getElementById('wave-svg').querySelector('path');
+      let points = [];
+      let step = 400 / (freq / 4); // Frequência ajusta o espaçamento das cristas
+      let amplitude = pulse / 5;   // Pulso altera a amplitude da onda visual
 
-function ans(btn,type,qnum){
-  var q=btn.closest('.quiz-q');
-  if(answered[qnum]) return;
-  answered[qnum]=true;
-  btn.classList.add(type);
-  if(type==='wrong'){q.querySelectorAll('.qopt').forEach(function(b){if(b.getAttribute('onclick').indexOf("'correct'")>-1)b.classList.add('correct')});}
-  else{scores++;}
-  var fb=document.getElementById('fb'+qnum);
-  fb.textContent=fbs[qnum][type];
-  fb.className='qfb show '+(type==='correct'?'fb-ok':'fb-err');
-  q.querySelectorAll('.qopt').forEach(function(b){b.style.cursor='default'});
-  var total=Object.keys(answered).length;
-  if(total>=10){
-    var sb=document.getElementById('scorebox');
-    sb.classList.add('show');
-    document.getElementById('scorenum').textContent=scores+'/10';
-    var msg=scores>=8?'Excelente! Você está bem preparado para a prova.':scores>=6?'Bom desempenho. Revise os temas em que errou.':'Continue revisando — foque nas leis e na ética.';
-    document.getElementById('scorelabel').textContent=msg;
-  }
-}
+      for (let x = 0; x <= 400; x += 10) {
+        let y = 50 + Math.sin(x / (step || 1)) * amplitude;
+        points.push(`${x},${y}`);
+      }
 
-function showTab(id){
-  document.querySelectorAll('.section').forEach(function(s){s.classList.remove('active')});
-  document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('active')});
-  document.getElementById(id).classList.add('active');
-  event.target.classList.add('active');
-}
-</script>
+      pathElement.setAttribute('d', `M ` + points.map(p => `L ${p}`).join(' ').substring(2));
+    }
+
+    // Filtro do Glossário
+    function filterGlossary() {
+      const query = document.getElementById("glossary-search").value.toLowerCase();
+      document.querySelectorAll(".glossary-row").forEach(row => {
+        const text = row.textContent.toLowerCase();
+        row.style.display = text.includes(query) ? "" : "none";
+      });
+    }
+
+    // Filtro de Especialidades
+    function filterSpecs(cat) {
+      document.querySelectorAll(".spec-filter-btn").forEach(btn => {
+        btn.classList.remove('active', 'bg-brand-600', 'text-white');
+        btn.classList.add('bg-white', 'text-slate-600');
+      });
+      event.target.classList.add('active', 'bg-brand-600', 'text-white');
+
+      document.querySelectorAll(".spec-card").forEach(card => {
+        if (cat === 'todas' || card.getAttribute('data-cat') === cat) {
+          card.style.display = "";
+        } else {
+          card.style.display = "none";
+        }
+      });
+    }
+
+    // Lógica Avançada de Simulado com Comentários Dinâmicos
+    let quizState = {};
+    let correctAnswersCount = 0;
+    const feedbacks = {
+      1: {
+        correct: 'Excelente! O Artigo 3º do Decreto-Lei nº 938/1969 estabelece expressamente a exclusividade e natureza privativa de planejar e executar métodos fisioterápicos.',
+        wrong: 'Incorreto. O Artigo 2º reconhece o nível superior e o Artigo 5º trata de supervisão/magistério. O Artigo 3º é que dita a execução privativa do fisioterapeuta.'
+      },
+      2: {
+        correct: 'Certo! O Parecer CFE nº 388/1963 subordinou a Fisioterapia à Medicina, classificando a profissão como auxiliar, gerando atraso e protesto de classe.',
+        wrong: 'Incorrreto. O erro foi subordinar a fisioterapia à tutela médica como carreira auxiliar técnica de nível médio, retirando o diagnóstico e autonomia clínica.'
+      },
+      3: {
+        correct: 'Correto! Em 1813, Ling idealizou a Ginástica Sueca em Estocolmo, dividindo exercícios em preventivos, corretivos e analgésicos.',
+        wrong: 'Incorreto. Ling fundou o Instituto Real na Suécia (1813) com bases cinesioterapêuticas e de ginástica médica. A Chartered Society é muito posterior (1894).'
+      },
+      4: {
+        correct: 'Exato! A proibição do "Antes e Depois" para publicidade comercial é estrita (Res. 519/2020), pois a Fisioterapia é uma atividade de meio, e não promessa de resultado estético absoluto.',
+        wrong: 'Incorreto. É infração ética séria. Mesmo com a assinatura de consentimento por escrito do paciente, a exposição comercial corporativa é vedada.'
+      },
+      5: {
+        correct: 'Perfeito! A prática de Acupuntura é reconhecida pelo COFFITO, mas também é assegurada judicialmente a outras categorias de saúde (compartilhada).',
+        wrong: 'Incorreto. Emissão de pareceres, concessão de alta e diagnóstico cinético-funcional são atos privativos exclusivos do fisioterapeuta.'
+      },
+      6: {
+        correct: 'Correto! O Conselho Federal exige a guarda integral do Prontuário Clínico por 20 anos de forma a salvaguardar eventuais litígios legais futuros.',
+        wrong: 'Incorreto. O tempo legal exigido de guarda em arquivo ativo ou inativo de Prontuários Clínicos Fisioterapêuticos é de 20 anos.'
+      },
+      7: {
+        correct: 'Correto! O modelo interdisciplinar dita que os profissionais trocam impressões e definem metas comuns para recuperação total do paciente de forma integrada.',
+        wrong: 'Incorreto. No modelo multidisciplinar, as ações ocorrem em paralelo sem diálogo direto estruturado. O interdisciplinar propõe rounds e união real.'
+      },
+      8: {
+        correct: 'Correto! A Reumatologia foi integrada ao rol oficial de especialidades reconhecidas do COFFITO em 2022.',
+        wrong: 'Incorreto. Embora o reumatismo seja tratado desde as bases, o COFFITO reconheceu a especialidade de forma independente e definitiva apenas no ano de 2022.'
+      },
+      9: {
+        correct: 'Certo! A Cinesioterapia usa o estímulo do movimento planejado para estimular as funções musculoesqueléticas dos órgãos e artelhos.',
+        wrong: 'Incorreto. O movimento curativo planejado (cinesioterapia) é a perfeita representação mecânica da máxima hipocrática "a função estimula o órgão".'
+      },
+      10: {
+        correct: 'Excelente! A Lei Federal nº 8.856/1994 conquistou a histórica jornada máxima semanal de 30 horas semanais para a categoria.',
+        wrong: 'Incorreto. A CLT rege 44 horas semanais e a enfermagem possui outras diretrizes, mas Fisioterapeutas têm jornada máxima nacional de 30 horas.'
+      }
+    };
+
+    function checkAnswer(button, type, qNum) {
+      // Evitar que mude a resposta
+      if (quizState[qNum]) return;
+      quizState[qNum] = type;
+
+      const parentBox = button.closest('.quiz-item-box');
+      const allOptions = parentBox.querySelectorAll('.quiz-opt');
+
+      // Desabilitar opções
+      allOptions.forEach(opt => {
+        opt.disabled = true;
+        opt.classList.add('opacity-65', 'cursor-not-allowed');
+      });
+
+      // Estilizar resposta escolhida e correta
+      if (type === 'correct') {
+        button.classList.remove('opacity-65');
+        button.classList.add('bg-emerald-100', 'border-emerald-500', 'text-emerald-900', 'font-bold');
+        correctAnswersCount++;
+      } else {
+        button.classList.remove('opacity-65');
+        button.classList.add('bg-rose-100', 'border-rose-500', 'text-rose-900', 'font-bold');
+        // Achar e pintar a correta
+        allOptions.forEach(opt => {
+          if (opt.getAttribute('onclick').includes("'correct'")) {
+            opt.classList.remove('opacity-65');
+            opt.classList.add('bg-emerald-50', 'border-emerald-400', 'text-emerald-800');
+          }
+        });
+      }
+
+      // Mostrar status pill
+      const statusPill = parentBox.querySelector('.quiz-status-pill');
+      statusPill.classList.remove('hidden');
+      if (type === 'correct') {
+        statusPill.textContent = 'Correta ✓';
+        statusPill.classList.add('bg-emerald-100', 'text-emerald-800');
+      } else {
+        statusPill.textContent = 'Incorreta ✗';
+        statusPill.classList.add('bg-rose-100', 'text-rose-800');
+      }
+
+      // Mostrar Feedback Clínico Comentado
+      const feedbackContainer = parentBox.querySelector('.quiz-feedback-container');
+      feedbackContainer.classList.remove('hidden');
+      feedbackContainer.textContent = feedbacks[qNum][type];
+      feedbackContainer.classList.add(type === 'correct' ? 'bg-emerald-50' : 'bg-rose-50', type === 'correct' ? 'text-emerald-800' : 'text-rose-800');
+
+      // Atualizar progresso geral na barra lateral
+      updateProgress();
+    }
+
+    function updateProgress() {
+      const answeredKeys = Object.keys(quizState);
+      const answeredCount = answeredKeys.length;
+      
+      document.getElementById('quiz-progress-text').textContent = `${answeredCount} / 10`;
+      document.getElementById('quiz-progress-bar').style.width = `${(answeredCount / 10) * 100}%`;
+
+      // Se respondeu as 10 questões, mostra pontuação final estruturada
+      if (answeredCount === 10) {
+        const scoreBox = document.getElementById('quiz-final-scorebox');
+        scoreBox.classList.remove('hidden');
+        document.getElementById('quiz-score-display').textContent = `${correctAnswersCount} / 10`;
+        
+        let msg = "";
+        if (correctAnswersCount >= 8) msg = "Sensacional! Seu nível de conhecimento sobre ética, leis e fundamentos da fisioterapia está excelente.";
+        else if (correctAnswersCount >= 6) msg = "Bom resultado. Vale revisar as questões incorretas e atentar-se às resoluções do COFFITO.";
+        else msg = "Foque nas leis de 1969 e na diferença diagnóstica cinético-funcional para evoluir seu desempenho.";
+        
+        document.getElementById('quiz-score-message').textContent = msg;
+        scoreBox.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function resetQuiz() {
+      quizState = {};
+      correctAnswersCount = 0;
+
+      // Resetar barra de progresso
+      document.getElementById('quiz-progress-text').textContent = `0 / 10`;
+      document.getElementById('quiz-progress-bar').style.width = '0%';
+      document.getElementById('quiz-final-scorebox').classList.add('hidden');
+
+      // Limpar cartões de questões
+      document.querySelectorAll('.quiz-item-box').forEach(box => {
+        // Ocultar feedback e status pill
+        box.querySelector('.quiz-status-pill').className = "quiz-status-pill hidden text-xs font-semibold px-3 py-1 rounded-full";
+        box.querySelector('.quiz-status-pill').textContent = "";
+        
+        const feedbackContainer = box.querySelector('.quiz-feedback-container');
+        feedbackContainer.className = "quiz-feedback-container hidden p-4 rounded-xl text-xs font-medium";
+        feedbackContainer.textContent = "";
+
+        // Reabilitar e redefinir classes dos botões
+        box.querySelectorAll('.quiz-opt').forEach(opt => {
+          opt.disabled = false;
+          opt.className = "quiz-opt w-full text-left text-xs p-3.5 border border-slate-200 rounded-xl hover:bg-slate-50 font-medium transition-all";
+        });
+      });
+
+      // Scroll para primeira questão
+      document.querySelector('.quiz-item-box').scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
